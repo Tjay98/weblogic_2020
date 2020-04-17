@@ -25,9 +25,45 @@ class HomeController extends BaseController
     }
 
     public function login(){
-        Throw new Exception('Method not implemented. Do it yourself!');
+        //verifica qual o tipo de metodo e age adequadamente
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            return View::make('home.login');
+        }
+        else{
+            $username=$_POST['username'];
+            $password=$_POST['password'];
+
+            $usercheck=Users::find_by_username_and_password($username,$password);
+            if(!empty($usercheck)){
+                Session::set('username',$username);
+                
+               if($usercheck->role==1){
+                    Session::set('role','1');
+                    return View::make('home.index');
+
+                }
+                else{
+                    Session::set('role','2');
+                    return View::make('home.index');
+                }
+                
+                
+            }
+            else{
+                return View::make('home.logout');
+            }
+
+        }
     }
 
+    public function signup(){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            return View::make('home.login');
+        }
+        else{
+
+        }
+    }
 
     public function worksheet(){
 
@@ -40,7 +76,7 @@ class HomeController extends BaseController
         $dataObject = MetaArmCoreModel::getComponents();
         Session::set('object', $dataObject);
 
-        Redirect::toRoute('home/worksheet');
+        Redirect::toRoute('home/index');
     }
 
     public function showsession(){
@@ -51,7 +87,7 @@ class HomeController extends BaseController
     public function destroysession(){
 
         Session::destroy();
-        Redirect::toRoute('home/worksheet');
+        Redirect::toRoute('home/index');
     }
 
 
