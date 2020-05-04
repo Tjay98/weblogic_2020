@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 28-Abr-2020 às 11:14
+-- Tempo de geração: 04-Maio-2020 às 18:28
 -- Versão do servidor: 10.4.10-MariaDB
 -- versão do PHP: 5.6.40
 
@@ -25,6 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `games`
+--
+
+DROP TABLE IF EXISTS `games`;
+CREATE TABLE IF NOT EXISTS `games` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `player_points` int(11) NOT NULL,
+  `enemy_points` int(11) NOT NULL,
+  `status` int(11) NOT NULL COMMENT '1-iniciado 2-acabado',
+  `started_date` datetime NOT NULL,
+  `finish_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `scoreboard`
 --
 
@@ -32,8 +51,11 @@ DROP TABLE IF EXISTS `scoreboard`;
 CREATE TABLE IF NOT EXISTS `scoreboard` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `points` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `total_points` int(11) NOT NULL,
+  `total_wins` int(11) NOT NULL,
+  `total_loses` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -63,6 +85,22 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `status`, `role`, `creation_date`) VALUES
 (1, 'rodolfo', 'rodolfo-barreira@hotmail.com', '123456789', '1', '2', '2020-04-17 22:35:11'),
 (2, 'cidalia', 'cidalia@cidalia.pt', '123', '1', '1', '2020-04-17 22:38:20');
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `games`
+--
+ALTER TABLE `games`
+  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Limitadores para a tabela `scoreboard`
+--
+ALTER TABLE `scoreboard`
+  ADD CONSTRAINT `scoreboard_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
