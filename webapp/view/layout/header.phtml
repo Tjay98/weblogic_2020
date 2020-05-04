@@ -17,9 +17,12 @@ use ArmoredCore\WebObjects\URL;
     <?=AssetBundler::css()?>
 
     <link rel="shortcut icon" href="<?= Asset::image('gt_favicon.png')?>">
+    
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <!-- Custom styles for our site template -->
     <link rel="stylesheet" href="<?= Asset::css('/bootstrap-theme.css')?>" media="screen" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,17 +43,15 @@ use ArmoredCore\WebObjects\URL;
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
                 <li class="active"><a href="<?= URL::toRoute('home/index')?>">Home</a></li>
-                <li><a href="<?= URL::toRoute('home/start')?>">Start</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">MVC Tools<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="active"><a href="<?=Url::toRoute('home/worksheet')?>">Worksheet</a></li>
-                        <li><a href="<?= Url::toRoute('devtools/restcontrollerform')?>">REST Style Resource controller generator</a></li>
-                        <li><a href="<?= Url::toRoute('devtools/accomponents')?>">Armored Core Components</a></li>
-                    </ul>
-                </li>
-                <li><a href="<?=URL::toRoute('plano/index')?>">Plano</a></li>
-                <li><a class="btn" href="<?= URL::toRoute('home/login')?>">SIGN IN / SIGN UP</a></li>
+                <li><a href="<?= URL::toRoute('home/start')?>">GUIA MVC</a></li>
+                <?php if(!empty($_SESSION['username'])){
+                    echo '<li><a class="" href="'.URL::toRoute("home/game").'">Jogo</a></li>';
+                    echo '<li><a class="" href="'.URL::toRoute("home/scoreboard").'">Scoreboard</a></li>';
+                    echo '<li><a class="btn" href="'.URL::toRoute("home/logout").'">Logout</a></li>';
+                }else{
+                    echo '<li><a class="btn" href="'.URL::toRoute("home/login").'">Login/Registar</a></li>';
+                }?>
+                
             </ul>
         </div><!--/.nav-collapse -->
     </div>

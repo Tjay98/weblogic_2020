@@ -33,35 +33,71 @@ class HomeController extends BaseController
             $username=$_POST['username'];
             $password=$_POST['password'];
 
-            $usercheck=Users::find_by_username_and_password($username,$password);
+            $usercheck=Users::find_by_username($username);
             if(!empty($usercheck)){
-                Session::set('username',$username);
+                if(password_verify($password, $usercheck->password)){
+                    Session::set('username',$username);
                 
-               if($usercheck->role==1){
-                    Session::set('role','1');
-                    return View::make('home.index');
+                    if($usercheck->role==1){
+                        Session::set('role','1');
+                        return View::make('home.index');
 
+                    }
+                    else{
+                        Session::set('role','2');
+                        return View::make('home.index');
+                    }
+                
                 }
                 else{
-                    Session::set('role','2');
-                    return View::make('home.index');
+                    echo "password error";
                 }
                 
                 
             }
             else{
-                return View::make('home.logout');
+                echo "username and password error";
             }
 
         }
     }
 
-    public function signup(){
+    public function register(){
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return View::make('home.login');
+            return View::make('home.register');
         }
         else{
+            $username=$__POST['username'];
+            $email=$_POST['email'];
+            $password=$_POST['password'];
+            $usercheck=Users::find_by_username($username);
 
+            if(empty($usercheck)){
+
+                $emailcheck=Users::find_by_email($email);
+
+                if(empty($emailcheck)){
+
+                    $passwordhash=password_hash ($password,PASSWORD_BCRYPT);
+                    $userdata = [
+                        'username' => $username, 
+                        'email' => $email, 
+                        'password' => $passwordhash,];
+                    $insert = new Users($userdata);
+                    $insert->save();
+                    
+                    Redirect::flashToRoute('home/index', ['sucessregister' => 'success']);
+                    //Redirect::toRoute('home/index');
+                }
+                else{
+                    echo "email already exists";
+                }   
+                
+                
+            }
+            else{
+                echo "username already exists";
+            }
         }
     }
 
@@ -84,7 +120,7 @@ class HomeController extends BaseController
         var_dump($res);
     }
 
-    public function destroysession(){
+    public function logout(){
 
         Session::destroy();
         Redirect::toRoute('home/index');
