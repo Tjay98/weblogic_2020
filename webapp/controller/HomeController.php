@@ -26,51 +26,59 @@ class HomeController extends BaseController
     }
 
     public function login(){
-        //verifica qual o tipo de metodo e age adequadamente
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return View::make('home.login');
-        }
-        else{
-            $username=$_POST['username'];
-            $password=$_POST['password'];
+        if(empty($_SESSION['username'])){
+            //verifica qual o tipo de metodo e age adequadamente
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                Session::destroy();
+                return View::make('home.login');
+            }
+            else{
+                $username=$_POST['username'];
+                $password=$_POST['password'];
 
-            $usercheck=Users::find_by_username($username);
-            if(!empty($usercheck)){
-                if(password_verify($password, $usercheck->password)){
-                    if($usercheck->status==1){
-                        Session::set('username',$username);
+                $usercheck=Users::find_by_username($username);
+                if(!empty($usercheck)){
+                    if(password_verify($password, $usercheck->password)){
+                        if($usercheck->status==1){
+                            Session::set('username',$username);
+                        
+                            if($usercheck->role==1){
+                                Session::set('role','1');
+                                Redirect::toRoute('home/index');
+
+                            }
+                            else{
+                                Session::set('role','2');
+                                Redirect::toRoute('home/index');
+                            }
+                        }else{
+                            echo "banned";
+                        }     
+                        
+                    }
+                    else{
+                        echo "password error";
+                    }
                     
-                        if($usercheck->role==1){
-                            Session::set('role','1');
-                            return View::make('home.index');
-
-                        }
-                        else{
-                            Session::set('role','2');
-                            return View::make('home.index');
-                        }
-                    }else{
-                        echo "banned";
-                    }     
+                    
                     
                 }
                 else{
-                    echo "password error";
+                    echo "username and password error";
                 }
-                  
-                
-                
-            }
-            else{
-                echo "username and password error";
-            }
 
+            }
+        }
+        else{
+            Redirect::toRoute('home/index');
         }
     }
 
     public function register(){
+        if(empty($_SESSION['username'])){
         //if(!empty(Data::get('success'))){
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                Session::destroy();
                 return View::make('home.register');
             }
             else{
@@ -94,7 +102,7 @@ class HomeController extends BaseController
                         $insert = new Users($userdata);
                         $insert->save();
                         
-                        Redirect::flashToRoute('home/index', ['success' => 'success']);
+                        Session::set('success','success');
                     }
                     else{
                         echo "email error";
@@ -110,6 +118,10 @@ class HomeController extends BaseController
         else{
             Redirect::flashToRoute('home/index', ['success' => 'success']);
         }*/
+        }
+        else{
+            Redirect::toRoute('home/index');
+        }
     }
 
     public function worksheet(){

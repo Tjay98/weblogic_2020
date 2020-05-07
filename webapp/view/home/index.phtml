@@ -18,7 +18,7 @@ Layout::includeLayout('header'); ?>
     <header id="head">
         <div class="container">
             <div class="row">
-                <?php if(!empty(Data::get('success'))){echo "Conta registada com sucesso.";}?>
+                <?php if(!empty($_SESSION['success'])){echo "Conta registada com sucesso.";}?>
                 <h1 class="lead"><b>ShutTheBox</b><br><small>WebLogic MVC</small></h1>
                 <p><a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('home/login')?>">Login/Registar</a></p>
 
