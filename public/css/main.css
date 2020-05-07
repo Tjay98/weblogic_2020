@@ -84,7 +84,7 @@ img.pull-left { margin-right: 10px; }
 	
 	/*Jogo*/
 
-	.score-container { /*max-width: 750px;*/ margin: 0px auto; }
+.score-container { /*max-width: 750px;*/ margin: 0px auto; }
 .game-container { /*max-width: 750px;*/ background:#1A7404;  padding: 10px 10px 1px 10px; margin: 10px 10px 10px 10px; }
 .score-normal { float: left; background: rgba(0, 0, 0, 0.2); text-align: center; margin-bottom: 5px; margin-right: 5px; margin-left: 10px; border-radius: 5px; }
 .score-current { float: left; position: relative; background: #3498db; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 10px; }
@@ -127,7 +127,6 @@ img.pull-left { margin-right: 10px; }
 .bounceInUp { -webkit-animation-name: bounceInUp; animation-name: bounceInUp; }
 .player-inst { border-radius: 5px; box-shadow: 0px 1px 0px #fff inset, 0px 1px 5px #fff; padding: 10px 10px 10px 10px; margin: 10px 10px 10px 10px; background: none repeat scroll 0% 0% #cc3c3c; background: none repeat scroll 0% 0% rgba(183, 31, 95, 1); color: white; font-size: 1.0em; }
 .rulesbg { border-radius: 5px; box-shadow: 0px 1px 0px #FFF inset, 0px 1px 5px #FFF; margin: 10px; background: #27C1B9 none repeat scroll 0% 0%; font-size: 1em; }
-h1, .h1 { margin-top: 5px; margin-bottom: 10px; font-family: ABeeZee; line-height: 1em; color: #E6C6E6; font-size: 28px; margin-left: 5px; text-align: center; text-shadow: 0px 0px 0px #CEAECE, -1px 0px 0px #BF9FBF, -2px 0px 0px #B191B1, -3px 0px 0px #A282A2, -4px 0px 0px #947494, -5px 0px 0px #856585, -6px 0px 0px #775777, -7px 0px 6px rgba(0, 0, 0, 0.55), -7px 0px 1px rgba(0, 0, 0, 0.5), 0px 0px 6px rgba(0, 0, 0, 0.2); }
 .rules-desc { color: #FFF; font-family: verdana; font-size: 0.9em; }
 .rulesbg { font-size: 1em; }
 .panel-heading .accordion-toggle:after { /* symbol for "opening" panels */ /*font-family: 'Glyphicons Halflings';*/ /* essential for enabling glyphicon */ content: "\e114"; /* adjust as needed, taken from bootstrap.css */ float: right; /* adjust as needed */ color: grey; /* adjust as needed */ }
@@ -168,3 +167,24 @@ h1, .h1 { margin-top: 5px; margin-bottom: 10px; font-family: ABeeZee; line-heigh
     .adbg { margin: 10px 0px 10px 0px; }
     .price { height: 35px; width: 35px; }
 }
+
+
+/*Scorboard*/
+table {
+	border-collapse: collapse;
+	text-align:center;
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+  }
+  
+  th {
+	height: 50px;
+  }
+  table, th, td {
+	border: 1px solid black;
+  }
