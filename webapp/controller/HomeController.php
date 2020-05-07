@@ -124,6 +124,14 @@ class HomeController extends BaseController
         }
     }
 
+    public function logout(){
+
+        Session::destroy();
+        Redirect::toRoute('home/index');
+    }
+
+
+/*
     public function worksheet(){
 
         View::attachSubView('titlecontainer', 'layout.pagetitle', ['title' => 'MVC Worksheet']);
@@ -142,12 +150,8 @@ class HomeController extends BaseController
         $res = Session::get('object');
         var_dump($res);
     }
+*/
 
-    public function logout(){
-
-        Session::destroy();
-        Redirect::toRoute('home/index');
-    }
 
 
 }
