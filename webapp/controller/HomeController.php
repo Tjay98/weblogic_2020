@@ -1,4 +1,5 @@
 <?php
+use ArmoredCore\WebObjects\Data;
 use ArmoredCore\Controllers\BaseController;
 use ArmoredCore\WebObjects\Redirect;
 use ArmoredCore\WebObjects\Session;
@@ -21,7 +22,7 @@ class HomeController extends BaseController
     public function start(){
 
         //View::attachSubView('titlecontainer', 'layout.pagetitle', ['title' => 'Quick Start']);
-        return View::make('home.start');
+        Redirect::flashToRoute('home/index', ['success' => 'success']);
     }
 
     public function login(){
@@ -35,8 +36,8 @@ class HomeController extends BaseController
 
             $usercheck=Users::find_by_username($username);
             if(!empty($usercheck)){
-                if($usercheck->status==1){
-                    if(password_verify($password, $usercheck->password)){
+                if(password_verify($password, $usercheck->password)){
+                    if($usercheck->status==1){
                         Session::set('username',$username);
                     
                         if($usercheck->role==1){
@@ -48,14 +49,15 @@ class HomeController extends BaseController
                             Session::set('role','2');
                             return View::make('home.index');
                         }
+                    }else{
+                        echo "banned";
+                    }     
                     
-                    }
-                    else{
-                        echo "password error";
-                    }
-                }else{
-                    Redirect::flashToRoute('home/login', ['faillogin' => 'fail']);
-                }   
+                }
+                else{
+                    echo "password error";
+                }
+                  
                 
                 
             }
@@ -67,42 +69,47 @@ class HomeController extends BaseController
     }
 
     public function register(){
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return View::make('home.register');
-        }
-        else{
-            $username=$__POST['username'];
-            $email=$_POST['email'];
-            $password=$_POST['password'];
-            $usercheck=Users::find_by_username($username);
-
-            if(empty($usercheck)){
-
-                $emailcheck=Users::find_by_email($email);
-
-                if(empty($emailcheck)){
-
-                    $passwordhash=password_hash ($password,PASSWORD_BCRYPT);
-                    $userdata = [
-                        'username' => $username, 
-                        'email' => $email, 
-                        'password' => $passwordhash,];
-                    $insert = new Users($userdata);
-                    $insert->save();
-                    
-                    Redirect::flashToRoute('home/index', ['sucessregister' => 'success']);
-                    //Redirect::toRoute('home/index');
-                }
-                else{
-                    echo "email already exists";
-                }   
-                
-                
+        //if(!empty(Data::get('success'))){
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return View::make('home.register');
             }
             else{
-                echo "username already exists";
+                $username=$_POST['username'];
+                $email=$_POST['email'];
+                $password=$_POST['password'];
+
+                $usercheck=Users::find_by_username($username);
+
+                if(empty($usercheck)){
+
+                    $emailcheck=Users::find_by_email($email);
+
+                    if(empty($emailcheck)){
+
+                        $passwordhash=password_hash ($password,PASSWORD_BCRYPT);
+                        $userdata = [
+                            'username' => $username, 
+                            'email' => $email, 
+                            'password' => $passwordhash,];
+                        $insert = new Users($userdata);
+                        $insert->save();
+                        
+                        Redirect::flashToRoute('home/index', ['success' => 'success']);
+                    }
+                    else{
+                        echo "email error";
+                    }   
+                    
+                    
+                }
+                else{
+                    echo "username error";
+                }
             }
-        }
+       /* }
+        else{
+            Redirect::flashToRoute('home/index', ['success' => 'success']);
+        }*/
     }
 
     public function worksheet(){

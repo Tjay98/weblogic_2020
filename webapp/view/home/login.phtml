@@ -28,12 +28,11 @@ Layout::includeLayout('header') ?>
 								<div class="top-margin" id="usernamepart">
 									<label>Username <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="username" name="username">
-									<small id="usernameError" class="text-danger"></small>
 								</div>
 								<div class="top-margin" id="passwordpart">
 									<label>Password <span class="text-danger">*</span></label>
 									<input type="password" class="form-control" id="password" name="password">
-									<small id="passwordError" class="text-danger"></small>
+									<small id="Error" class="text-danger"></small>
 								</div>
 
 								<hr>
@@ -43,10 +42,9 @@ Layout::includeLayout('header') ?>
 									<a href="<?= URL::toRoute('home/register')?>">Criar uma conta</a>
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" id="loginFormSubmit"type="submit">Login</button>
+										<button class="btn btn-action" id="loginFormSubmit">Login</button>
 									</div>
 								</div>
-								<?Php if(!empty($faillogin)){echo "ola";}?>
 							</form>
 						</div>
 					</div>
@@ -59,7 +57,7 @@ Layout::includeLayout('header') ?>
 		</div>
 	</div>	<!-- /container -->
 	<script>
-	$( "#loginform" ).submit(function( e ) {
+	$( "#loginFormSubmit" ).click(function(e) {
 		e.preventDefault();
 		var username= $('#username').val();
 		var password= $('#password').val();
@@ -92,10 +90,13 @@ Layout::includeLayout('header') ?>
 				
                    if(data=='username and password error'){
 						
-						$('#passwordError').text('Nome de utilizador ou password incorretos');
+						$('#Error').text('Nome de utilizador ou password incorretos');
 				   }
-				   if(data=='password error'){
-						$('#passwordError').text('Password incorreta');
+				   else if(data=='banned'){
+						$('#Error').text('Utilizador banido');
+				   }
+				   else if(data=='password error'){
+						$('#Error').text('Password incorreta');
 				   }
 				   else{
 						$('#loginform').submit();
