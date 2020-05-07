@@ -45,8 +45,8 @@ use ArmoredCore\WebObjects\URL;
                 <li class="active"><a href="<?= URL::toRoute('home/index')?>">Home</a></li>
                 <li><a href="<?= URL::toRoute('home/start')?>">GUIA MVC</a></li>
                 <?php if(!empty($_SESSION['username'])){
-                    echo '<li><a class="" href="'.URL::toRoute("home/game").'">Jogo</a></li>';
-                    echo '<li><a class="" href="'.URL::toRoute("home/scoreboard").'">Scoreboard</a></li>';
+                    echo '<li><a class="" href="'.URL::toRoute("game/game").'">Jogo</a></li>';
+                    echo '<li><a class="" href="'.URL::toRoute("game/scoreboard").'">Scoreboard</a></li>';
                     echo '<li><a class="btn" href="'.URL::toRoute("home/logout").'">Logout</a></li>';
                 }else{
                     echo '<li><a class="btn" href="'.URL::toRoute("home/login").'">Login/Registar</a></li>';

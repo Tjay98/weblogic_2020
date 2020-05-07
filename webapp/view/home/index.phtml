@@ -20,8 +20,10 @@ Layout::includeLayout('header'); ?>
             <div class="row">
                 <?php if(!empty($_SESSION['success'])){echo "Conta registada com sucesso.";}?>
                 <h1 class="lead"><b>ShutTheBox</b><br><small>WebLogic MVC</small></h1>
-                <p><a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('home/login')?>">Login/Registar</a></p>
-
+                <?php if(empty($_SESSION['username'])){?><p><a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('home/login')?>">Login/Registar</a></p>
+                <?php } else{?>
+                    <p><a class="btn btn-action btn-lg" role="button" href="<?= Url::toRoute('game/game')?>">Jogar</a></p>
+                <?php }?>
             </div>
         </div>
     </header>
