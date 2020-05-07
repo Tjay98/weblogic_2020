@@ -79,4 +79,92 @@ img.pull-left { margin-right: 10px; }
 		.footer2 p { margin: 0; }
 
 	.widget-simplenav { margin-left:-5px; }		
-	.widget-simplenav a{ margin:0 5px; }		
+	.widget-simplenav a{ margin:0 5px; }
+	
+	
+	/*Jogo*/
+
+	.score-container { /*max-width: 750px;*/ margin: 0px auto; }
+.game-container { /*max-width: 750px;*/ background:#1A7404;  padding: 10px 10px 1px 10px; margin: 10px 10px 10px 10px; }
+.score-normal { float: left; background: rgba(0, 0, 0, 0.2); text-align: center; margin-bottom: 5px; margin-right: 5px; margin-left: 10px; border-radius: 5px; }
+.score-current { float: left; position: relative; background: #3498db; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 10px; }
+.score-current1 { float: left; position: relative; background: #B042C3; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 10px; }
+.score-cell { float: left; position: relative; background: #ff8c8c; text-align: center; border-radius: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 10px; background: url(/Resources/images/round.jpg); background-size: 100%; }
+.round-cell { float: left; position: relative; background: #58d2f3; text-align: center; border-radius: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 10px; background: url(/Resources/images/gallery_3.png); background-size: 100%; }
+.player-cell { margin-bottom: 40px; }
+.score-none { float: left; position: relative; background: none; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; }
+.score-current > .price { background: white; color: rgba(0, 0, 0, 0.7); }
+.score-current1 > .price { background: white; color: rgba(0, 0, 0, 0.7); }
+.score-normal > .price { background: white; color: rgba(0, 0, 0, 0.7); }
+.score-cell > .price { background: none; color: white; font-size: 1.1em; /*line-height: 33px;*/ }
+.round-cell > .price1 { /*background-color: #3498db;*/ }
+.score-current > .price2 { background: none; color: rgba(0, 0, 0, 0.7); }
+.score-none > .price2 { background: none; color: rgba(0, 0, 0, 0.7); }
+.price { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.price1 { text-align: center; height: 50px; width: 50px; text-align: center; /*background-color: #e74c3c;*/ line-height: 40px; color: #fff; border-radius: 5px; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.price2 {text-align: center; height: 50px; width: 50px; text-align: center; background-color: none; line-height: 50px; color: #fff; border-radius: 5px; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.round-score { height: 40px; width: 40px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 40px; color: #fff; font-size: 1.0em; font-weight: 100; margin: 10px 10px 10px 10px; }
+.dicecell { height: 70px; width: 70px; border-radius: 5px; margin-left: 10px; }
+.selectgame { border-radius: 5px; box-shadow: 0px 1px 0px #fff inset, 0px 1px 5px #fff; padding: 10px 10px 10px 10px; margin: 10px 10px 10px 10px; background: none repeat scroll 0% 0% #2388b5; color: white; font-size: 1.2em; }
+.pinst { color: #FFF; font-size: 1.2em; text-align: center; }
+#animated-example { border: solid 0px #1A7404; position: relative; background-color: transparent; }
+.animated { -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
+
+@-webkit-keyframes bounceInUp {
+    0% { opacity: 0; -webkit-transform: translateY(2000px); }
+    60% { opacity: 1; -webkit-transform: translateY(-30px); }
+    80% { -webkit-transform: translateY(10px); }
+    100% { -webkit-transform: translateY(0); }
+}
+
+@keyframes bounceInUp {
+    0% { opacity: 0; transform: translateY(2000px); }
+    60% { opacity: 1; transform: translateY(-30px); }
+    80% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+}
+
+.bounceInUp { -webkit-animation-name: bounceInUp; animation-name: bounceInUp; }
+.player-inst { border-radius: 5px; box-shadow: 0px 1px 0px #fff inset, 0px 1px 5px #fff; padding: 10px 10px 10px 10px; margin: 10px 10px 10px 10px; background: none repeat scroll 0% 0% #cc3c3c; background: none repeat scroll 0% 0% rgba(183, 31, 95, 1); color: white; font-size: 1.0em; }
+.rulesbg { border-radius: 5px; box-shadow: 0px 1px 0px #FFF inset, 0px 1px 5px #FFF; margin: 10px; background: #27C1B9 none repeat scroll 0% 0%; font-size: 1em; }
+h1, .h1 { margin-top: 5px; margin-bottom: 10px; font-family: ABeeZee; line-height: 1em; color: #E6C6E6; font-size: 28px; margin-left: 5px; text-align: center; text-shadow: 0px 0px 0px #CEAECE, -1px 0px 0px #BF9FBF, -2px 0px 0px #B191B1, -3px 0px 0px #A282A2, -4px 0px 0px #947494, -5px 0px 0px #856585, -6px 0px 0px #775777, -7px 0px 6px rgba(0, 0, 0, 0.55), -7px 0px 1px rgba(0, 0, 0, 0.5), 0px 0px 6px rgba(0, 0, 0, 0.2); }
+.rules-desc { color: #FFF; font-family: verdana; font-size: 0.9em; }
+.rulesbg { font-size: 1em; }
+.panel-heading .accordion-toggle:after { /* symbol for "opening" panels */ /*font-family: 'Glyphicons Halflings';*/ /* essential for enabling glyphicon */ content: "\e114"; /* adjust as needed, taken from bootstrap.css */ float: right; /* adjust as needed */ color: grey; /* adjust as needed */ }
+.panel-heading .accordion-toggle.collapsed:after { /* symbol for "collapsed" panels */ content: "\e080"; /* adjust as needed, taken from bootstrap.css */ }
+.panel-title > a { margin-top: 5px; margin-bottom: 10px; font-family: ABeeZee; line-height: 1em; color: #E6C6E6; font-size: 21px; margin-left: 5px; text-align: center; text-shadow: 0px 0px 0px #CEAECE, -1px 0px 0px #BF9FBF, -2px 0px 0px #B191B1, -3px 0px 0px #A282A2, -4px 0px 0px #947494, -5px 0px 0px #856585, -6px 0px 0px #775777, -7px 0px 6px rgba(0, 0, 0, 0.55), -7px 0px 1px rgba(0, 0, 0, 0.5), 0px 0px 6px rgba(0, 0, 0, 0.2); text-decoration: none; }
+.panel-default > .panel-heading { background: #27C1B9 none repeat scroll 0% 0%; }
+.panel-body { padding: 10px; }
+.panel-default > .panel-heading + .panel-collapse > .panel-body { border-top-color: #ddd; background: #15918B none repeat scroll 0% 0%; color: white; font-size: 1.16em; }
+
+@-webkit-keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fadeOut { -webkit-animation-name: fadeOut; animation-name: fadeOut; }
+.fadeOut { animation-name: fadeOut; }
+.animated-score { position: absolute; right: 9px; top: -7px; font-size: 15px; font-weight: bold; color: #ecf0f1; z-index: 100; animation-duration: 1.5s; animation-fill-mode: both; animation-timing-function: linear; }
+.wrapper { text-align: center; }
+.post-content { background: transparent none repeat scroll 0px 0px; opacity: 0.5; margin: -40px auto 0px; /*width: 40%;*/ }
+.finalmsg { font-family: Aclonica; line-height: 1em; color: #FFF; font-size: 26px; text-shadow: 0px 0px 0px #841384, 1px 1px 0px #750475, 2px 2px 0px #670067, 3px 3px 0px #580058, 4px 4px 0px #4A004A, 5px 5px 0px #3B003B, 6px 6px 0px #2D002D, 7px 7px 6px rgba(0, 0, 0, 0.6), 7px 7px 1px rgba(0, 0, 0, 0.5), 0px 0px 6px rgba(0, 0, 0, 0.2); }
+.adbg { border-radius: 5px; box-shadow: 0px 1px 0px #fff inset, 0px 1px 5px #fff; padding: 10px 10px 10px 10px; margin: 10px 10px 10px 10px; background: none repeat scroll 0% 0% #e0cdbd; font-size: 1.0em; text-align: center; }
+#dicebutton { margin-top: 15px; }
+.img-sel { -moz-box-shadow: 0 0 10px #fff; -webkit-box-shadow: 0 0 10px #fff; box-shadow: 0px 0px 10px #fff; }
+#p1i { padding: 5px; }
+#p2i { padding: 5px; }
+.ruleslink { color: #ecf0f1; text-decoration: underline; }
+
+@media (max-width:767px) /*xs*/
+{
+    .game-container { margin: 0px 0px 0px 0px; }
+    .rulesbg { margin: 10px 0px 10px 0px; }
+    .selectgame { margin: 10px 0px 10px 0px; }
+    .adbg { margin: 10px 0px 10px 0px; }
+    .price { height: 35px; width: 35px; }
+}

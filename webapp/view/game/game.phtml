@@ -3,7 +3,122 @@ use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 Layout::includeLayout('header'); ?>
-<?php echo "preencher com o jogo";?>
+<div class="col-xs-12 col-sm-8 col-md-8 col-md-offset-2">
+<div class="game-container center-block col-8" >
+                <div class="row center-block ">
+                    <div class="col-xs-2">
+                        <div class="score-current" id="r1">
+                            <div class="price" id="p1c1">1</div>
+                        </div>
+                        <div class="score-current" id="r2">
+                            <div class="price" id="p1c2">2</div>
+                        </div>
+                        <div class="score-current" id="r3">
+                            <div class="price" id="p1c3">3</div>
+                        </div>
+                        <div class="score-current" id="r4">
+                            <div class="price" id="p1c4">4</div>
+                        </div>
+                        <div class="score-current" id="r5">
+                            <div class="price" id="p1c5">5</div>
+                        </div>
+                        <div class="score-current" id="r6">
+                            <div class="price" id="p1c6">6</div>
+                        </div>
+                        <div class="score-current" id="r7">
+                            <div class="price" id="p1c7">7</div>
+                        </div>
+                        <div class="score-current" id="r8">
+                            <div class="price" id="p1c8">8</div>
+                        </div>
+                        <div class="score-current" id="r9">
+                            <div class="price" id="p1c9">9</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="player-cell">
+                                    <img src="http://localhost/weblogic_2020/public/img/jogador.png" id="p1i" alt="Player" class="center-block">
+                                    <div class="wrapper">
+                                        <div style="display: block;" class="caption post-content finalmsg" id="p1msgdiv">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="round-cell">
+                                    <div class="price1" id="p1r"></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="player-cell">
+                                    <img src="http://localhost/weblogic_2020/public/img/pc.png" id="p2i" alt="Computer" class="center-block">
+                                    <div class="wrapper">
+                                        <div style="display: block;" class="caption post-content finalmsg" id="p2msgdiv">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="round-cell">
+                                    <div class="price1" id="p2r"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input id="dicebutton" value="Roll Dice" type="button" class="btn btn-md btn-primary center-block" disabled="">
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row center-block">
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <div class="dicecell" id="d1">
+                                    <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/dieWhite_border1.png" alt="Die 1">
+                                </div>
+                                <div class="dicecell" id="d2">
+                                    <img id="dice2" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/dieWhite_border1.png" alt="Die 1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"><span class="pinst" style="display: none;">Select tiles by clicking it which totals sum of dice value</span></div>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="score-current1" id="r11">
+                            <div class="price" id="p2c1">1</div>
+                        </div>
+                        <div class="score-current1" id="r12">
+                            <div class="price" id="p2c2">2</div>
+                        </div>
+                        <div class="score-current1" id="r13">
+                            <div class="price" id="p2c3">3</div>
+                        </div>
+                        <div class="score-current1" id="r14">
+                            <div class="price" id="p2c4">4</div>
+                        </div>
+                        <div class="score-current1" id="r15">
+                            <div class="price" id="p2c5">5</div>
+                        </div>
+                        <div class="score-current1" id="r16">
+                            <div class="price" id="p2c6">6</div>
+                        </div>
+                        <div class="score-current1" id="r17">
+                            <div class="price" id="p2c7">7</div>
+                        </div>
+                        <div class="score-current1" id="r18">
+                            <div class="price" id="p2c8">8</div>
+                        </div>
+                        <div class="score-current1" id="r19">
+                            <div class="price" id="p2c9">9</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="some-element" style="display: none;">
+                    <div class="stackbox-body">Stackbox example with options</div>
+                </div>
+                <!--
+                <div class="row center-block">
+                    <div class="col-xs-12">
+                        <a target="_blank" href="http://www.playonlinedicegames.com"><img src="http://localhost/weblogic_2020/public/img/verde-lodo.jpg" class="img-responsive center-block"></a>
+                    </div>
+                </div>-->
+            </div>
+</div>
 
 
-<?php Layout::includeLayout('footer')?>
