@@ -35,23 +35,27 @@ class HomeController extends BaseController
 
             $usercheck=Users::find_by_username($username);
             if(!empty($usercheck)){
-                if(password_verify($password, $usercheck->password)){
-                    Session::set('username',$username);
-                
-                    if($usercheck->role==1){
-                        Session::set('role','1');
-                        return View::make('home.index');
+                if($usercheck->status==1){
+                    if(password_verify($password, $usercheck->password)){
+                        Session::set('username',$username);
+                    
+                        if($usercheck->role==1){
+                            Session::set('role','1');
+                            return View::make('home.index');
 
+                        }
+                        else{
+                            Session::set('role','2');
+                            return View::make('home.index');
+                        }
+                    
                     }
                     else{
-                        Session::set('role','2');
-                        return View::make('home.index');
+                        echo "password error";
                     }
-                
-                }
-                else{
-                    echo "password error";
-                }
+                }else{
+                    Redirect::flashToRoute('home/login', ['faillogin' => 'fail']);
+                }   
                 
                 
             }
