@@ -21,8 +21,8 @@ Router::post('home/loginvalidation', 'Homecontroller/login');
 Router::get('home/register',   'HomeController/register');
 Router::post('home/registervalidation', 'Homecontroller/register');
 Router::get('home/logout',  'HomeController/logout');
-Router::get('home/scoreboard','HomeController/scoreboard');
-Router::get('home/game','HomeController/game');
+Router::get('game/scoreboard','GameController/scoreboard');
+Router::get('game/game','GameController/game');
 
 
 

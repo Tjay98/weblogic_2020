@@ -6,4 +6,15 @@ use ArmoredCore\WebObjects\View;
 
 class GameController extends BaseController
 {
+
+    public function game(){
+
+        return View::make('game.game');
+    }
+
+    public function scoreboard(){
+
+        return View::make('game.scoreboard');
+    }
+
 }
