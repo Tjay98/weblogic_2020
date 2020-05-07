@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 04-Maio-2020 às 18:28
+-- Tempo de geração: 07-Maio-2020 às 17:26
 -- Versão do servidor: 10.4.10-MariaDB
 -- versão do PHP: 5.6.40
 
@@ -56,7 +56,15 @@ CREATE TABLE IF NOT EXISTS `scoreboard` (
   `total_loses` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `scoreboard`
+--
+
+INSERT INTO `scoreboard` (`id`, `user_id`, `total_points`, `total_wins`, `total_loses`) VALUES
+(1, 1, 100, 100, 0),
+(2, 2, 0, 0, 100);
 
 -- --------------------------------------------------------
 
@@ -69,22 +77,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `status` enum('1','2') NOT NULL DEFAULT '1',
+  `password` varchar(255) NOT NULL COMMENT 'Hashed password',
+  `status` enum('1','2') NOT NULL DEFAULT '1' COMMENT '1-normal 2-banido',
   `role` enum('1','2') NOT NULL DEFAULT '1' COMMENT '1-user 2- admin',
   `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `status`, `role`, `creation_date`) VALUES
-(1, 'rodolfo', 'rodolfo-barreira@hotmail.com', '123456789', '1', '2', '2020-04-17 22:35:11'),
-(2, 'cidalia', 'cidalia@cidalia.pt', '123', '1', '1', '2020-04-17 22:38:20');
+(1, 'rodolfo', 'rodolfo-barreira@hotmail.com', '$2y$10$J0J12kfmioCtKqNhiznzuummBAAhqeoDakr2tB6A6WOTFRjDb.On.', '1', '2', '2020-04-17 22:35:11'),
+(2, 'cidalia', 'cidalia@cidalia.pt', '$2y$10$J0J12kfmioCtKqNhiznzuummBAAhqeoDakr2tB6A6WOTFRjDb.On.', '1', '1', '2020-04-17 22:38:20'),
+(3, 'tiago', 'tiago@tiago.pt', '$2y$10$J0J12kfmioCtKqNhiznzuummBAAhqeoDakr2tB6A6WOTFRjDb.On.', '2', '1', '2020-05-07 18:21:16');
 
 --
 -- Restrições para despejos de tabelas
