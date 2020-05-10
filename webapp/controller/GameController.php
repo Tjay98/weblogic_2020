@@ -18,4 +18,9 @@ class GameController extends BaseController
         return View::make('game.scoreboard');
     }
 
+    public function story(){
+
+        return View::make('game.story');
+    }
+
 }
