@@ -25,7 +25,7 @@ Router::get('game/scoreboard','GameController/scoreboard');
 Router::get('game/game','GameController/game');
 Router::get('game/story','GameController/story');
 
-Router::resource('user', 'UserController');
+Router::resource('backoffice', 'UserController');
 
 
 

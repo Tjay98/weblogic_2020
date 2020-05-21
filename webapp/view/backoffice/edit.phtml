@@ -4,7 +4,7 @@ use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
 Layout::includeLayout('header') ?>
-<?php $book = Data::get('user') ?>
+<?php $book = Data::get('backoffice') ?>
 <?php ErrMgr::attach($book) ?>
 
 	<!-- container -->
@@ -25,7 +25,7 @@ Layout::includeLayout('header') ?>
                             <hr>
 
 
-							<form class="form-horizontal" method="post" action="<?=Url::toRoute('user/update', $book->id)?>">
+							<form class="form-horizontal" method="post" action="<?=Url::toRoute('backoffice/update', $book->id)?>">
 
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="name">Name:<span class="text-danger">*</span></label>

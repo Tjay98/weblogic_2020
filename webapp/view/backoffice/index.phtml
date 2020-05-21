@@ -12,14 +12,14 @@ Layout::includeLayout('header') ?>
 
     <ol class="breadcrumb">
         <li><a href="index.html">Home</a></li>
-        <li class="active">Book Index</li>
+        <li class="active">backoffice</li>
     </ol>
 
     <h2 class="text-left top-space">backoffice</h2>
     <h2 class="top-space"></h2>
     <div class="row">
         <div class="col-sm-12">
-            <table class="table table-striped"><thead><th><h3>Id</h3></th><th><h3>Name</h3></th><th><h3>email</h3></th><th><h3>User Actions</h3></th></thead>
+            <table class="table table-striped"><thead><th><h3>Id</h3></th><th><h3>Name</h3></th><th><h3>email</h3></th></thead>
                 <tbody>
 
 
@@ -29,9 +29,9 @@ Layout::includeLayout('header') ?>
                         <td><?=$user->username?></td>
                         <td><?=$user->email?></td>
                         <td>
-                            <a href="<?=Url::toRoute('user/show', $user->id)?>" class="btn btn-info" role="button">Show</a>
-                            <a href="<?=Url::toRoute('user/edit', $user->id)?>" class="btn btn-info" role="button">Edit</a>
-                            <a href="<?=Url::toRoute('user/destroy', $user->id)?>" class="btn btn-warning" role="button">Delete</a>
+                            <a href="<?=Url::toRoute('backoffice/show', $user->id)?>" class="btn btn-info" role="button">Show</a>
+                            <a href="<?=Url::toRoute('backoffice/edit', $user->id)?>" class="btn btn-info" role="button">Edit</a>
+                            <a href="<?=Url::toRoute('backoffice/destroy', $user->id)?>" class="btn btn-warning" role="button">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -41,10 +41,11 @@ Layout::includeLayout('header') ?>
             </table>
 
         </div>
-        <div class="col-sm-6">
+
+        <div class="col-sm-7">
             <h3>Create a new user</h3>
             <p>
-                <a href="<?=Url::toRoute('user/create')?>" class="btn btn-info" role="button">New</a>
+                <a href="<?=Url::toRoute('backoffice/create')?>" class="btn btn-info" role="button">New</a>
             </p>
         </div>
     </div> <!-- /row -->

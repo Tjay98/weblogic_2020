@@ -11,7 +11,7 @@ $time = microtime(true);
 
 // PSR-4 default Autoloader Class
 require ( 'lib/SplClassLoader.php' );
-//load user configs
+//load backoffice configs
 require ( 'User-Config.php' );
 // setups environment global variables (context paths and urls)
 require ( 'ArmoredConfig.php' );

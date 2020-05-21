@@ -18,7 +18,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
     public function index()
     {
         $users = user::all();
-        View::make('user.index', ['users' => $users]);
+        View::make('backoffice.index', ['users' => $users]);
 
     }
 
@@ -27,7 +27,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
      */
     public function create()
     {
-        View::make('user.create');
+        View::make('backoffice.create');
     }
 
     /**
@@ -41,10 +41,10 @@ class UserController extends BaseController implements ResourceControllerInterfa
 
         if($user->is_valid()){
             $user->save();
-            Redirect::toRoute('user/index');
+            Redirect::toRoute('backoffice/index');
         } else {
             // return form with data and errors
-            Redirect::flashToRoute('user/create', ['user' => $user]);
+            Redirect::flashToRoute('backoffice/create', ['backoffice' => $user]);
         }
     }
 
@@ -61,7 +61,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
         if (is_null($user)) {
             // redirect to standard error page
         } else {
-            View::make('user.show', ['user' => $user]);
+            View::make('backoffice.show', ['backoffice' => $user]);
         }
     }
 
@@ -76,7 +76,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
         if (is_null($user)) {
             // redirect to standard error page
         } else {
-            View::make('user.edit', ['user' => $user]);
+            View::make('backoffice.edit', ['backoffice' => $user]);
         }
     }
 
@@ -91,10 +91,10 @@ class UserController extends BaseController implements ResourceControllerInterfa
 
         if($user->is_valid()){
             $user->save();
-            Redirect::toRoute('user/index');
+            Redirect::toRoute('backoffice/index');
         } else {
             // return form with data and errors
-            Redirect::flashToRoute('user/edit', ['user' => $user], $id);
+            Redirect::flashToRoute('backoffice/edit', ['backoffice' => $user], $id);
         }
     }
 
@@ -106,6 +106,6 @@ class UserController extends BaseController implements ResourceControllerInterfa
     {
         $user = user::find($id);
         $user->delete();
-        Redirect::toRoute('user/index');
+        Redirect::toRoute('backoffice/index');
     }
 }
