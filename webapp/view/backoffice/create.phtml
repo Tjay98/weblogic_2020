@@ -4,8 +4,8 @@ use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 
 Layout::includeLayout('header') ?>
-<?php $user = Data::get('backoffice')?>
-<?php ErrMgr::attach($user) ?>
+<?php $users = Data::get('backoffice')?>
+<?php ErrMgr::attach($users) ?>
 
 
 	<!-- container -->
@@ -16,7 +16,7 @@ Layout::includeLayout('header') ?>
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">New Book</h1>
+					<h1 class="page-title">New user</h1>
 				</header>
 				
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -25,9 +25,17 @@ Layout::includeLayout('header') ?>
 							<hr>
 							<form method="post" action="<?=Url::toRoute('backoffice/store')?>">
 								<div class="top-margin">
-									<label>Name <span class="text-danger">*</span></label>
-									<input type="text" value="<?=$user->name?>" name="name" class="form-control" placeholder="Enter book name">
-                                    <?= ErrMgr::bind('name') ?>
+                                    <label>username <span class="text-danger"></span></label>
+									<input type="text" value="<?=$users->username?>" name="username" class="form-control" placeholder="Enter name">
+                                    <label>email <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->email?>" name="email" class="form-control" placeholder="Enter email">
+                                    <label>password <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->password?>" name="password" class="form-control" placeholder="Enter password">
+
+
+                                    <?= ErrMgr::bind('username');?>
+                                    <?= ErrMgr::bind('email');?>
+                                    <?= ErrMgr::bind('password') ?>
 
 								</div>
 
@@ -35,7 +43,7 @@ Layout::includeLayout('header') ?>
 								<hr>
 
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">New</button>
+										<button class="btn btn-action" type="submit">create</button>
 									</div>
 								</div>
 							</form>

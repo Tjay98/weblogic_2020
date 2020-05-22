@@ -1,17 +1,14 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: smendes
- * Date: 17-05-2016
- * Time: 14:16
- */
+
 class user extends \ActiveRecord\Model
 {
-   // static $validates_presence_of = array(
-        //array('name'),
-        //array('isbn', 'message' => 'YooaaH it must be provided')
-    //);
+    static $validates_presence_of = array(
+        array('username', 'message' => 'campo username deve ser preenchido'),
+        array('email', 'message' => 'campo email deve ser preenchido'),
+        array('password', 'message' => 'campo password deve ser preenchido')
+    );
+
 
 
 }
