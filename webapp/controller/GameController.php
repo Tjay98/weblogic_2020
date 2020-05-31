@@ -9,18 +9,38 @@ class GameController extends BaseController
 {
 
     public function game(){
-
-        return View::make('game.game');
+        if(!empty($_SESSION['username'])){
+            return View::make('game.game');
+        }else{
+            Redirect::toRoute('home/index');
+        }
     }
 
     public function scoreboard(){
-
-        return View::make('game.scoreboard');
+        if(!empty($_SESSION['username'])){
+            $options=[
+                'order'=>'total_points desc',
+                'limit'=>10
+                ];
+                $scoreboard = scoreboard::find('all');
+               
+                die();
+                View::make('game.scoreboard', ['ranks' => $ranks]);
+                
+            return View::make('game.scoreboard');
+        }
+        else{
+            Redirect::toRoute('home/index');
+        }
     }
 
     public function story(){
-
-        return View::make('game.story');
+        if(empty($_SESSION['username'])){
+            return View::make('game.story');
+        }
+        else{
+            Redirect::toRoute('home/index');
+        }
     }
 
 }

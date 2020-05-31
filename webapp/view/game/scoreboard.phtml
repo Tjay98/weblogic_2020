@@ -3,85 +3,38 @@ use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
 Layout::includeLayout('header'); ?>
-<div class="col-12">
-    <table>
-        <tr>
-            <td><b>Posição</b></td>
-            <td><b>Jogador</b></td>
-            <td><b>Total Pontos</b></td>
-            <td><b>Total Vitórias</b></td>
-            <td><b>Total Perdas</b></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
+<div class="container" style="padding-top:20px;">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Posição</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Nº de pontos</th>
+            <th scope="col">Nº de vitórias</th>
+            <th scope="col">Nº de derrotas</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php print_r($ranks);?>
+<!--             <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            </tr> -->
+        </tbody>
     </table>
 </div>
 <?php Layout::includeLayout('footer')?>
