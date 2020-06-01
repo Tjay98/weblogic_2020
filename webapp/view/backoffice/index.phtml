@@ -10,28 +10,68 @@ Layout::includeLayout('header') ?>
 <!-- container -->
 <div class="container">
 
-    <ol class="breadcrumb">
+<!--     <ol class="breadcrumb">
         <li><a href="index.html">Home</a></li>
         <li class="active">backoffice</li>
-    </ol>
+    </ol> -->
 
-    <h2 class="text-left top-space">backoffice</h2>
-    <h2 class="top-space"></h2>
+    <h2 class="text-center top-space"><b><u>Backoffice</u></b></h2>
+
     <div class="row">
         <div class="col-sm-12">
-            <table class="table table-striped"><thead><th><h3>Id</h3></th><th><h3>Name</h3></th><th><h3>email</h3></th></thead>
+            <table class="table table-striped">
+                <thead>
+                    <th style="text-align:center"><h4>ID</h4></th>
+                    <th style="text-align:center"><h4>Username</h4></th>
+                    <th style="text-align:center"><h4>Email</h4></th>
+                    <th style="text-align:center"><h4>Estado</h4></th>
+                    <th style="text-align:center"><h4>Permissão</h4></th>
+
+                    <th style="text-align:center">                                    
+                        <p>
+                            <a href="<?=Url::toRoute('backoffice/create')?>" class="btn btn-success" role="button">Criar novo utilizador</a>
+                        </p>
+                    </th>
+
+                    </thead>
                 <tbody>
 
 
                 <?php foreach ($users as $user) { ?>
-                    <tr>
+                    <tr style="text-align:center">
                         <td><?=$user->id?></td>
                         <td><?=$user->username?></td>
                         <td><?=$user->email?></td>
+                        <td><?php 
+                            if ($user->status==1){
+                                 echo "Ativo";
+                            }else{
+                                echo "Banido";
+                            }?>
+                        </td>
+                        <td><?php 
+                            if ($user->role==1){
+                                 echo "Utilizador";
+                            }else{
+                                echo "Admin";
+                            }?>
+                        </td>
+                        
+
+
                         <td>
-                            <a href="<?=Url::toRoute('backoffice/show', $user->id)?>" class="btn btn-info" role="button">Show</a>
-                            <a href="<?=Url::toRoute('backoffice/edit', $user->id)?>" class="btn btn-info" role="button">Edit</a>
-                            <a href="<?=Url::toRoute('backoffice/destroy', $user->id)?>" class="btn btn-warning" role="button">Delete</a>
+                            <a href="<?=Url::toRoute('backoffice/show', $user->id)?>" class="btn btn-info" role="button">Mostrar</a>
+                            <a href="<?=Url::toRoute('backoffice/edit', $user->id)?>" class="btn btn-warning" role="button">Editar</a>
+                            <?php if($user->role==1){?>
+                            <a href="<?=Url::toRoute('backoffice/ban', $user->id)?>" class="btn btn-dark" style="background-color:#7d3d7d;color:white;" role="button">Banir</a>
+                            <a href="<?=Url::toRoute('backoffice/destroy', $user->id)?>" class="btn btn-danger" role="button">Apagar</a>
+                            <?php }else{?>
+                                <button class="btn btn-dark" style="background-color:#7d3d7d;color:white;" role="button" disabled>Banir</button>
+                                <button class="btn btn-danger" role="button" disabled>Apagar</button>
+                            <?php }?>
+                        </td>
+                        <td>
+                        &nbsp;
                         </td>
                     </tr>
                 <?php } ?>
@@ -42,12 +82,7 @@ Layout::includeLayout('header') ?>
 
         </div>
 
-        <div class="col-sm-7">
-            <h3>Create a new user</h3>
-            <p>
-                <a href="<?=Url::toRoute('backoffice/create')?>" class="btn btn-info" role="button">New</a>
-            </p>
-        </div>
+
     </div> <!-- /row -->
 
 </div>	<!-- /container -->

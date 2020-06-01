@@ -1,21 +1,42 @@
 <?php
 use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
-Layout::includeLayout('header'); ?>
+
+Layout::includeLayout('header'); 
+
+$scoreboard = Data::get('scores');
+
+//^erro relacionado
+ 
+?>
+
 <div class="container" style="padding-top:20px;">
-    <table class="table">
+    <h2 class="text-center top-space"><b><u>Scoreboard</u></b></h2>
+    <br>
+    <table class="table table-striped table-hover">
         <thead class="thead-dark">
             <tr>
-            <th scope="col">Posição</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Nº de pontos</th>
-            <th scope="col">Nº de vitórias</th>
-            <th scope="col">Nº de derrotas</th>
+            <th style="text-align:center"><h4>Posição</h4></th>
+            <th style="text-align:center"><h4>Username</h4></th>
+            <th style="text-align:center"><h4>Nº de pontos</h4></th>
+            <th style="text-align:center"><h4>Nº de vitórias</h4></th>
+            <th style="text-align:center"><h4>Nº de derrotas</h4></th>
             </tr>
         </thead>
         <tbody>
-        <?php print_r($ranks);?>
+        <?php $x=1;
+        foreach ($scoreboard as $score){?>
+            <tr>
+                <td style="text-align:center"><?php echo $x; ?></td>
+                <td style="text-align:center"><?php echo $score['username']; ?></td>
+                <td style="text-align:center"><?php echo $score['total_points']; ?></td>
+                <td style="text-align:center"><?php echo $score['total_wins']; ?></td>
+                <td style="text-align:center"><?php echo $score['total_loses']; ?></td>
+            </tr>
+        <?php $x++;}?>
+       
 <!--             <tr>
             <th scope="row">1</th>
             <td>Mark</td>

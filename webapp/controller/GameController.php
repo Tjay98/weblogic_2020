@@ -17,21 +17,32 @@ class GameController extends BaseController
     }
 
     public function scoreboard(){
-        if(!empty($_SESSION['username'])){
+       
+
+         if(!empty($_SESSION['username'])){
+           
             $options=[
                 'order'=>'total_points desc',
-                'limit'=>10
+                'limit'=>10,
+                'joins'=>'LEFT JOIN users on (scoreboards.user_id = users.id)',
+                'select'=>'users.username , scoreboards.total_points , scoreboards.total_wins , scoreboards.total_loses'
                 ];
-                $scoreboard = scoreboard::find('all');
-               
-                die();
-                View::make('game.scoreboard', ['ranks' => $ranks]);
-                
-            return View::make('game.scoreboard');
+            $ranks = Scoreboards::all($options);
+            foreach ($ranks as $rank){
+                $scores[]=[
+                    'username'=>$rank->username,
+                    'total_points'=>$rank->total_points,
+                    'total_wins'=>$rank->total_wins,
+                    'total_loses'=>$rank->total_loses,
+                ];
+    
+            }
+    
+            return View::make('game.scoreboard', ['scores' => $scores]);
         }
         else{
             Redirect::toRoute('home/index');
-        }
+        } 
     }
 
     public function story(){

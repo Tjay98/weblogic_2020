@@ -43,13 +43,13 @@ use ArmoredCore\WebObjects\URL;
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
                 <li class="active"><a href="<?= URL::toRoute('home/index')?>">Home</a></li>
-                <li><a href="<?= URL::toRoute('home/start')?>">GUIA MVC</a></li>
                 <?php if(!empty($_SESSION['username'])){
                     if($_SESSION['role']==2){
-                        echo '<li><a class="" href="'.URL::toRoute("admin/usermanager").'">Utilizadores</a></li>';
+                        echo '<li><a class="" href="'.URL::toRoute("backoffice/index").'">Utilizadores</a></li>';
                     }
-                    echo '<li><a class="" href="'.URL::toRoute("game/game").'">Jogo</a></li>';
-                    echo '<li><a class="" href="'.URL::toRoute("game/scoreboard").'">Scoreboard</a></li>';
+                    echo '<li><a href="'.URL::toRoute("game/game").'">Jogo</a></li>';
+                    echo '<li><a href="'.URL::toRoute("game/scoreboard").'">Scoreboard</a></li>';
+                    echo '<li><a href="'.URL::toRoute("home/profile").'">Perfil <b><i class="fa fa-user"></i></b></a></li>';
                     echo '<li><a class="btn" href="'.URL::toRoute("home/logout").'">Logout</a></li>';
                 }else{
                     echo '<li><a class="btn" href="'.URL::toRoute("home/login").'">Login/Registar</a></li>';

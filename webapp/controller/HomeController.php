@@ -13,12 +13,6 @@ class HomeController extends BaseController
         return View::make('home.index');
     }
 
-    public function start(){
-
-        //View::attachSubView('titlecontainer', 'layout.pagetitle', ['title' => 'Quick Start']);
-        Redirect::flashToRoute('home/index', ['success' => 'success']);
-    }
-
     public function login(){
         if(empty($_SESSION['username'])){
             //verifica qual o tipo de metodo e age adequadamente
@@ -124,6 +118,51 @@ class HomeController extends BaseController
         Redirect::toRoute('home/index');
     }
 
+
+    public function profile(){
+        if(!empty($_SESSION['username'])){
+            $userinfo=Users::find_by_username($_SESSION['username']);
+            $user=[
+                'username'=>$userinfo->username,
+                'email'=>$userinfo->email,
+                'created_date'=>$userinfo->creation_date,
+            ];
+            View::make('home.profile', ['users' => $user]);
+        }
+        else{
+            Redirect::toRoute('home/index');
+        }
+
+    }
+
+    public function editprofile(){
+        if(!empty($_SESSION['username'])){
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return View::make('home.editprofile');
+            }
+            else{
+
+            }
+            
+        }
+        else{
+            Redirect::toRoute('home/index');
+        }
+    }
+
+    public function changepassword(){
+        if(!empty($_SESSION['username'])){
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return View::make('home.changepassword');
+            }else{
+
+            }
+            
+        }else{
+            Redirect::toRoute('home/index');
+        }
+
+    }
 
 /*
     public function worksheet(){

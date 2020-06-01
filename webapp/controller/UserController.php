@@ -17,7 +17,7 @@ class UserController extends BaseController implements ResourceControllerInterfa
      */
     public function index()
     {
-        $users = user::all();
+        $users = Users::all();
         View::make('backoffice.index', ['users' => $users]);
 
     }
