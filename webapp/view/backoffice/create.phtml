@@ -31,11 +31,17 @@ Layout::includeLayout('header') ?>
                                     <input type="text" value="<?=$users->email?>" name="email" class="form-control" placeholder="Enter email">
                                     <label>password <span class="text-danger"></span></label>
                                     <input type="text" value="<?=$users->password?>" name="password" class="form-control" placeholder="Enter password">
+                                    <label>status <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->status?>" name="status" class="form-control" placeholder="Enter status">
+                                    <label>role <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->role?>" name="role" class="form-control" placeholder="Enter role">
 
 
                                     <?= ErrMgr::bind('username');?>
                                     <?= ErrMgr::bind('email');?>
                                     <?= ErrMgr::bind('password') ?>
+                                    <?= ErrMgr::bind('status') ?>
+                                    <?= ErrMgr::bind('role') ?>
 
 								</div>
 
@@ -46,6 +52,7 @@ Layout::includeLayout('header') ?>
 										<button class="btn btn-action" type="submit">create</button>
 									</div>
 								</div>
+                        <br><br><br>
 							</form>
 						</div>
 					</div>
