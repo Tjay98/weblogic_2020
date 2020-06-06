@@ -62,90 +62,18 @@ Layout::includeLayout('header'); ?>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input id="dicebutton" value="Roll Dice" type="button" class="btn btn-md btn-primary center-block" >
+                                <input id="dicebutton" value="Roll Dice" type="button" class="btn btn-md btn-primary center-block" disabled="">
                             </div>
                         </div>
                         <div class="row"></div>
                         <div class="row center-block">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <?php
-                                $dado1 = rand(1,6);
-                                $dado2 = rand(1,6);
-                                if ($dado1 == 1) {
-                                    ?>
                                 <div class="dicecell" id="d1">
-                                     <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/dice/dieWhite1.png" alt="Die 1">
-
+                                    <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
                                 </div>
-                                    <?php }
-                                if ($dado1 == 2) {
-                                ?>
                                 <div class="dicecell" id="d2">
-                                    <img id="dice2" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite2.png" alt="Die 2">
+                                    <img id="dice2" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite2.png" alt="Die 1">
                                 </div>
-                                <?php }
-                                if ($dado1 == 3)
-                                {?>
-                                <div class="dicecell" id="d3">
-                                <img id="dice3" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite3.png" alt="Die 3">
-                                </div>
-                                <?php }
-                                if ($dado1 == 4){
-                                    ?>
-                                    <div class="dicecell" id="d4">
-                                        <img id="dice4" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite4.png" alt="Die 4">
-                                    </div>
-                                    <?php }
-                                 if ($dado1 == 5){
-                                ?>
-                                     <div class="dicecell" id="d5">
-                                         <img id="dice5" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite5.png" alt="Die 5">
-                                     </div>
-                                     <?php }
-                                 if ($dado1 == 6){
-                                ?>
-                                     <div class="dicecell" id="d6">
-                                         <img id="dice6" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite6.png" alt="Die 6">
-                                     </div>
-                                     <?php }
-                                if ($dado2 == 1) {
-                                ?>
-                                <div class="dicecell" id="d1">
-                                    <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/dice/dieWhite1.png" alt="Die 1">
-
-                                </div>
-                                <?php }
-                                if ($dado2 == 2) {
-                                ?>
-                                <div class="dicecell" id="d2">
-                                    <img id="dice2" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite2.png" alt="Die 2">
-                                </div>
-                                <?php }
-                                if ($dado2 == 3)
-                                {?>
-                                <div class="dicecell" id="d3">
-                                    <img id="dice3" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite3.png" alt="Die 3">
-                                </div>
-                                <?php }
-                                if ($dado2 == 4){
-                                ?>
-                                <div class="dicecell" id="d4">
-                                    <img id="dice4" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite4.png" alt="Die 4">
-                                </div>
-                                <?php }
-                                if ($dado2 == 5){
-                                ?>
-                                <div class="dicecell" id="d5">
-                                    <img id="dice5" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite5.png" alt="Die 5">
-                                </div>
-                                <?php }
-                                if ($dado2 == 6){
-                                ?>
-                                <div class="dicecell" id="d6">
-                                    <img id="dice6" class="img-responsive die" src="http://localhost/weblogic_2020/public/AssetsShutTheBox/Dice/dieWhite6.png" alt="Die 6">
-                                </div>
-                                <?php }?>
-
                             </div>
                         </div>
                         <div class="row"><span class="pinst" style="display: none;">Select tiles by clicking it which totals sum of dice value</span></div>
