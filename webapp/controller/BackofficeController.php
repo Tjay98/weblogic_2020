@@ -87,13 +87,19 @@ class BackofficeController extends BaseController implements ResourceControllerI
     public function edit($id)
     {
         if(!empty($_SESSION['username'])&&($_SESSION['role']==2)){
-            $user = Users::find($id);
-
-            if (is_null($user)) {
-                // redirect to standard error page
-            } else {
-                View::make('backoffice.edit', ['backoffice' => $user]);
+            if($id==1 && $_SESSION['username'] !='rodolfo'){
+                Redirect::toRoute('backoffice/index');
             }
+            else{
+                $user = Users::find($id);
+
+                if (is_null($user)) {
+                    // redirect to standard error page
+                } else {
+                    View::make('backoffice.edit', ['backoffice' => $user]);
+                }
+            }
+
         }
         else{
             Redirect::toRoute('home/index');
@@ -107,27 +113,41 @@ class BackofficeController extends BaseController implements ResourceControllerI
     public function update($id)
     {
         if(!empty($_SESSION['username'])&&($_SESSION['role']==2)){
-            $user = Users::find($id);
-            $allinfo=Post::getAll();
+            if($id==1 && $_SESSION['username'] !='rodolfo'){
+                Redirect::toRoute('backoffice/index');
+            }
+            else{
+                $user = Users::find($id);
+                $allinfo=Post::getAll();
 
-            $user->update_attributes(
-                [
+                //se a password estiver vazia ele iguala a password à antiga caso contrario pega a nova e faz hash
+                if($allinfo['password']==''){
+                    $newpassword = $user->password;
+                }
+                else{
+                    $newpassword = password_hash ($allinfo['password'],PASSWORD_BCRYPT);
+                }
+
+                $user->update_attributes(
+                    [
                         'email'=>$allinfo['email'],
                         'nome_completo'=>$allinfo['nome_completo'],
                         'birthday'=>$allinfo['birthday'],
-                        'password'=>password_hash ($allinfo['password'],PASSWORD_BCRYPT),
+                        'password'=>$newpassword,
                         'status'=>$allinfo['status'],
                         'role'=>$allinfo['role']
-                ]
-            );
+                    ]
+                );
 
-            if($user->is_valid()){
-                $user->save();
-                Redirect::toRoute('backoffice/index');
-            } else {
-                // return form with data and errors
-                Redirect::flashToRoute('backoffice/edit', ['backoffice' => $user], $id);
+                if($user->is_valid()){
+                    $user->save();
+                    Redirect::toRoute('backoffice/index');
+                } else {
+                    // return form with data and errors
+                    Redirect::flashToRoute('backoffice/edit', ['backoffice' => $user], $id);
+                }
             }
+            
         }
         else{
             Redirect::toRoute('home/index');
@@ -141,9 +161,14 @@ class BackofficeController extends BaseController implements ResourceControllerI
     public function destroy($id)
     {
         if(!empty($_SESSION['username'])&&($_SESSION['role']==2)){
-            $user = Users::find($id);
-            $user->delete();
-            Redirect::toRoute('backoffice/index');
+            if($id==1 && $_SESSION['username'] !='rodolfo'){
+                Redirect::toRoute('backoffice/index');
+            }
+            else{
+                $user = Users::find($id);
+                $user->delete();
+                Redirect::toRoute('backoffice/index');
+            }
         }
         else{
             Redirect::toRoute('home/index');
