@@ -108,7 +108,18 @@ class BackofficeController extends BaseController implements ResourceControllerI
     {
         if(!empty($_SESSION['username'])&&($_SESSION['role']==2)){
             $user = Users::find($id);
-            $user->update_attributes(Post::getAll());
+            $allinfo=Post::getAll();
+
+            $user->update_attributes(
+                [
+                        'email'=>$allinfo['email'],
+                        'nome_completo'=>$allinfo['nome_completo'],
+                        'birthday'=>$allinfo['birthday'],
+                        'password'=>password_hash ($allinfo['password'],PASSWORD_BCRYPT),
+                        'status'=>$allinfo['status'],
+                        'role'=>$allinfo['role']
+                ]
+            );
 
             if($user->is_valid()){
                 $user->save();
@@ -141,7 +152,36 @@ class BackofficeController extends BaseController implements ResourceControllerI
 
     public function ban($id){
         if(!empty($_SESSION['username'])&&($_SESSION['role']==2)){
-        //IMPLEMENTAR BANIR UTILIZADOR -> ESTADO 2;
+
+            $user = Users::find($id);
+
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                
+                return View::make('backoffice.ban', ['users' => $user]);
+            }
+            else{
+                if($id!=1){
+                    
+                    if($user->status==1){
+                        $user->status=2;
+                        
+
+                    }else{
+
+                        $user->status=1;
+
+                    }
+                    $user->save();
+                    Redirect::toRoute('backoffice/index');
+
+
+
+                }
+                else{
+                    Redirect::flashToRoute('backoffice/index', ['error' => 'main_admin']);
+                }
+            }
+
         }
         else{
             Redirect::toRoute('home/index');

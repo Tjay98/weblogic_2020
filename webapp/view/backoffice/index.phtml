@@ -6,15 +6,16 @@ use ArmoredCore\WebObjects\URL;
 
 Layout::includeLayout('header') ?>
 <?php $users = Data::get('users') ?>
+<?php $error = Data::get('error') ?>
 
 <!-- container -->
 <div class="container">
 
-<!--     <ol class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
-        <li class="active">backoffice</li>
-    </ol> -->
-
+    <?php if($error=='main_admin'){ ?>
+        <div class="alert alert-danger" role="alert">
+        O utilizador atual não pode ser editado
+        </div>
+    <?php } ?>
     <h2 class="text-center top-space"><b><u>Backoffice</u></b></h2>
 
     <div class="row">
@@ -56,18 +57,18 @@ Layout::includeLayout('header') ?>
                                 echo "Admin";
                             }?>
                         </td>
-                        echo "<img src='http://localhost/weblogic_2020/public/AssetsShutTheBox/dice/dieWhite1.png'>";
+
 
 
                         <td>
-                            <a href="<?=Url::toRoute('backoffice/show', $user->id)?>" class="btn btn-info" role="button">Mostrar</a>
-                            <a href="<?=Url::toRoute('backoffice/edit', $user->id)?>" class="btn btn-warning" role="button">Editar</a>
+                            <a href="<?=Url::toRoute('backoffice/show', $user->id)?>" class="btn btn-info btn-sm" role="button">Mostrar</a>
+                            <a href="<?=Url::toRoute('backoffice/edit', $user->id)?>" class="btn btn-warning btn-sm" role="button">Editar</a>
                             <?php if($user->role==1){?>
-                            <a href="<?php $user->role == 2 ;  Url::toRoute('backoffice/index', $user->id)?>" class="btn btn-dark" style="background-color:#7d3d7d;color:white;" role="button">Banir</a>
-                            <a href="<?=Url::toRoute('backoffice/destroy', $user->id)?>" class="btn btn-danger" role="button">Apagar</a>
+                            <a href="<?= Url::toRoute('backoffice/ban', $user->id)?>" class="btn btn-dark btn-sm" style="background-color:#7d3d7d;color:white;width:115px;padding:10px" role="button"><?php if($user->status==1){echo "Banir";}else{echo "Desbanir";}?></a>
+                            <a href="<?=Url::toRoute('backoffice/destroy', $user->id)?>" class="btn btn-danger btn-sm" role="button">Apagar</a>
                             <?php }else{?>
-                                <button class="btn btn-dark" style="background-color:#7d3d7d;color:white;" role="button" disabled>Banir</button>
-                                <button class="btn btn-danger" role="button" disabled>Apagar</button>
+                                <button class="btn btn-dark btn-sm" style="background-color:#7d3d7d;color:white;" role="button" disabled>Banir</button>
+                                <button class="btn btn-danger btn-sm" role="button" disabled>Apagar</button>
                             <?php }?>
                         </td>
                         <td>

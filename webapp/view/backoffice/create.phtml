@@ -16,7 +16,7 @@ Layout::includeLayout('header') ?>
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">New user</h1>
+					<h1 class="page-title">Novo utilizador</h1>
 				</header>
 				
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -25,16 +25,27 @@ Layout::includeLayout('header') ?>
 							<hr>
 							<form method="post" action="<?=Url::toRoute('backoffice/store')?>">
 								<div class="top-margin">
-                                    <label>username <span class="text-danger"></span></label>
-									<input type="text" value="<?=$users->username?>" name="username" class="form-control" placeholder="Enter name">
-                                    <label>email <span class="text-danger"></span></label>
-                                    <input type="text" value="<?=$users->email?>" name="email" class="form-control" placeholder="Enter email">
-                                    <label>password <span class="text-danger"></span></label>
-                                    <input type="text" value="<?=$users->password?>" name="password" class="form-control" placeholder="Enter password">
-                                    <label>status <span class="text-danger"></span></label>
-                                    <input type="text" value="<?=$users->status?>" name="status" class="form-control" placeholder="Enter status">
-                                    <label>role <span class="text-danger"></span></label>
-                                    <input type="text" value="<?=$users->role?>" name="role" class="form-control" placeholder="Enter role">
+                                    <label>Username <span class="text-danger"></span></label>
+									<input type="text" value="<?=$users->username?>" name="username" class="form-control" placeholder="Username">
+
+                                    <label>Email <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->email?>" name="email" class="form-control" placeholder="Email">
+
+                                    <label>Password <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->password?>" name="password" class="form-control" placeholder="Password">
+
+                                    <label>Estado <span class="text-danger"></span></label>
+									<select id="status" name="status" class="form-control" required>
+                                        <option value="1" <?php if($users->status==1){echo "selected";}?>>Ativo</option>
+                                        <option value="2" <?php if($users->status==2){echo "selected";}?>>Banido</option>
+                                    </select>
+									
+									
+                                    <label>Permissão <span class="text-danger"></span></label>
+									<select id="role" name="role" class="form-control" required>
+                                        <option value="1" <?php if($users->status==1){echo "selected";}?>>User</option>
+                                        <option value="2" <?php if($users->status==2){echo "selected";}?>>Admin</option>
+                                    </select>
 
 
                                     <?= ErrMgr::bind('username');?>
@@ -48,8 +59,8 @@ Layout::includeLayout('header') ?>
 
 								<hr>
 
-									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">create</button>
+									<div class="col-lg-4 ">
+										<button class="btn btn-action" type="submit">Criar utilizador</button>
 									</div>
 								</div>
                         <br><br><br>
