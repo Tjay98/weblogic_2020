@@ -1447,20 +1447,21 @@ class Model
 
 		if ($results != ($expected = count($values)))
 		{
-			$class = get_called_class();
+			//$class = get_called_class();
 
 			if ($expected == 1)
 			{
-				if (!is_array($values))
-					$values = array($values);
+				if (!is_array($values)){
+					 $values = array($values);
 
-				throw new RecordNotFound("Couldn't find $class with ID=" . join(',',$values));
-			}
+				//throw new RecordNotFound("Couldn't find $class with ID=" . join(',',$values));
+			}}
 
 			$values = join(',',$values);
-			throw new RecordNotFound("Couldn't find all $class with IDs ($values) (found $results, but was looking for $expected)");
+			//throw new RecordNotFound("Couldn't find all $class with IDs ($values) (found $results, but was looking for $expected)");
+		}else {
+			return $expected == 1 ? $list[0] : $list;
 		}
-		return $expected == 1 ? $list[0] : $list;
 	}
 
 	/**

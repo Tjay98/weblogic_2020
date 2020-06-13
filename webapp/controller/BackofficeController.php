@@ -70,7 +70,12 @@ class BackofficeController extends BaseController implements ResourceControllerI
             \Tracy\Debugger::barDump($user);
 
             if (is_null($user)) {
-                // redirect to standard error page
+
+                Redirect::toRoute('backoffice/index');
+
+
+
+
             } else {
                 View::make('backoffice.show', ['backoffice' => $user]);
             }
@@ -95,6 +100,7 @@ class BackofficeController extends BaseController implements ResourceControllerI
 
                 if (is_null($user)) {
                     // redirect to standard error page
+                    Redirect::toRoute('backoffice/index');
                 } else {
                     View::make('backoffice.edit', ['backoffice' => $user]);
                 }
@@ -147,7 +153,7 @@ class BackofficeController extends BaseController implements ResourceControllerI
                     Redirect::flashToRoute('backoffice/edit', ['backoffice' => $user], $id);
                 }
             }
-            
+
         }
         else{
             Redirect::toRoute('home/index');
@@ -167,6 +173,7 @@ class BackofficeController extends BaseController implements ResourceControllerI
             else{
                 $user = Users::find($id);
                 $user->delete();
+
                 Redirect::toRoute('backoffice/index');
             }
         }

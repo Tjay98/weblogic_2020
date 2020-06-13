@@ -28,11 +28,18 @@ Layout::includeLayout('header') ?>
                                     <label>Username <span class="text-danger"></span></label>
 									<input type="text" value="<?=$users->username?>" name="username" class="form-control" placeholder="Username">
 
+                                    <label>nome completo <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->nome_completo?>" name="nome_completo" class="form-control" placeholder="nome_completo">
+
                                     <label>Email <span class="text-danger"></span></label>
                                     <input type="text" value="<?=$users->email?>" name="email" class="form-control" placeholder="Email">
 
                                     <label>Password <span class="text-danger"></span></label>
                                     <input type="text" value="<?=$users->password?>" name="password" class="form-control" placeholder="Password">
+
+                                    <label>birthday <span class="text-danger"></span></label>
+                                    <input type="date" required value="<?=$users->birthday?>" class="form-control" name="birthday" placeholder="Data de nascimento">
+
 
                                     <label>Estado <span class="text-danger"></span></label>
 									<select id="status" name="status" class="form-control" required>
