@@ -22,7 +22,16 @@ Router::get('home/register',   'HomeController/register');
 Router::post('home/registervalidation', 'Homecontroller/register');
 Router::get('home/logout',  'HomeController/logout');
 Router::get('game/scoreboard','GameController/scoreboard');
+
+
 Router::get('game/game','GameController/game');
+Router::get('game/dice1', 'GameController/dice1');
+Router::get('game/dice2', 'GameController/dice2');
+Router::post('game/rolldice', 'GameController/rolldice');
+Router::get('game/sumdice', 'GameController/SumDice');
+
+
+Router::get('game/SumDice', 'GameController/SumDice');
 Router::get('game/story','GameController/story');
 
 

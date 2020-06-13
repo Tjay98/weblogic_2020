@@ -2,7 +2,18 @@
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
+
+
+
 Layout::includeLayout('header'); ?>
+
+
+
+
+<head>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+</head>
 <div class="col-xs-12 col-sm-8 col-md-8 col-md-offset-2">
 <div class="game-container center-block col-8" >
                 <div class="row center-block ">
@@ -62,22 +73,21 @@ Layout::includeLayout('header'); ?>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input id="dicebutton" value="Roll Dice" type="button" class="btn btn-md btn-primary center-block" disabled="">
+                                <button id="dicebutton"   class="btn btn-md btn-primary center-block" method="post" action="<?=Url::toRoute('game/rolldice')?>">Roll Dice </button>
+                                
                             </div>
                         </div>
                         <div class="row"></div>
                         <div class="row center-block">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <div class="dicecell" id="d1">
-                                    <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/dieWhite_border1.png" alt="Die 1">
+                                <div class="dicecell" id="d1" method="get" action="  <?=Url::toRoute('user/dado1')?>  ">
                                 </div>
-                                <div class="dicecell" id="d2">
-                                    <img id="dice2" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/dieWhite_border1.png" alt="Die 1">
+                                <div class="dicecell" id="d2" method="get" action="  <?=Url::toRoute('user/dado2') ?> ">
                                 </div>
                             </div>
+                            <div class="row"><span class="pinst"  action="<?=Url::toRoute('game/sumdice')?>"></span></div>
                         </div>
-                        <div class="row"><span class="pinst" style="display: none;">Select tiles by clicking it which totals sum of dice value</span></div>
-                    </div>
+                        </div>
                     <div class="col-xs-1">
                         <div class="score-current1" id="r11">
                             <div class="price" id="p2c1">1</div>
