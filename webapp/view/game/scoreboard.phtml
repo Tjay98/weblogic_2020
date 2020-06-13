@@ -1,87 +1,61 @@
 <?php
 use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Data;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
-Layout::includeLayout('header'); ?>
-<div class="col-12">
-    <table>
-        <tr>
-            <td><b>Posição</b></td>
-            <td><b>Jogador</b></td>
-            <td><b>Total Pontos</b></td>
-            <td><b>Total Vitórias</b></td>
-            <td><b>Total Perdas</b></td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>Jogador</td>
-            <td>Total Pontos</td>
-            <td>Total Vitórias</td>
-            <td>Total Perdas</td>
-        </tr>
+
+Layout::includeLayout('header'); 
+
+$scoreboard = Data::get('scores');
+
+//^erro relacionado
+ 
+?>
+
+<div class="container" style="padding-top:20px;">
+    <h2 class="text-center top-space"><b><u>Scoreboard</u></b></h2>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+            <th style="text-align:center"><h4>Posição</h4></th>
+            <th style="text-align:center"><h4>Username</h4></th>
+            <th style="text-align:center"><h4>Nº de pontos</h4></th>
+            <th style="text-align:center"><h4>Nº de vitórias</h4></th>
+            <th style="text-align:center"><h4>Nº de derrotas</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php $x=1;
+        foreach ($scoreboard as $score){?>
+            <tr>
+                <td style="text-align:center"><?php echo $x; ?></td>
+                <td style="text-align:center"><?php echo $score['username']; ?></td>
+                <td style="text-align:center"><?php echo $score['total_points']; ?></td>
+                <td style="text-align:center"><?php echo $score['total_wins']; ?></td>
+                <td style="text-align:center"><?php echo $score['total_loses']; ?></td>
+            </tr>
+        <?php $x++;}?>
+       
+<!--             <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            </tr> -->
+        </tbody>
     </table>
 </div>
 <?php Layout::includeLayout('footer')?>

@@ -1,0 +1,79 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('header') ?>
+<?php $users = Data::get('backoffice')?>
+<?php ErrMgr::attach($users) ?>
+
+
+	<!-- container -->
+	<div class="container">
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Novo utilizador</h1>
+				</header>
+				
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<hr>
+							<form method="post" action="<?=Url::toRoute('backoffice/store')?>">
+								<div class="top-margin">
+                                    <label>Username <span class="text-danger"></span></label>
+									<input type="text" value="<?=$users->username?>" name="username" class="form-control" placeholder="Username">
+
+                                    <label>Email <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->email?>" name="email" class="form-control" placeholder="Email">
+
+                                    <label>Password <span class="text-danger"></span></label>
+                                    <input type="text" value="<?=$users->password?>" name="password" class="form-control" placeholder="Password">
+
+                                    <label>Estado <span class="text-danger"></span></label>
+									<select id="status" name="status" class="form-control" required>
+                                        <option value="1" <?php if($users->status==1){echo "selected";}?>>Ativo</option>
+                                        <option value="2" <?php if($users->status==2){echo "selected";}?>>Banido</option>
+                                    </select>
+									
+									
+                                    <label>Permissão <span class="text-danger"></span></label>
+									<select id="role" name="role" class="form-control" required>
+                                        <option value="1" <?php if($users->status==1){echo "selected";}?>>User</option>
+                                        <option value="2" <?php if($users->status==2){echo "selected";}?>>Admin</option>
+                                    </select>
+
+
+                                    <?= ErrMgr::bind('username');?>
+                                    <?= ErrMgr::bind('email');?>
+                                    <?= ErrMgr::bind('password') ?>
+                                    <?= ErrMgr::bind('status') ?>
+                                    <?= ErrMgr::bind('role') ?>
+
+								</div>
+
+
+								<hr>
+
+									<div class="col-lg-4 ">
+										<button class="btn btn-action" type="submit">Criar utilizador</button>
+									</div>
+								</div>
+                        <br><br><br>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer') ?>

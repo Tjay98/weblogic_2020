@@ -1,0 +1,91 @@
+
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('header') ?>
+<?php $users = Data::get('users') ?>
+<?php $error = Data::get('error') ?>
+
+<!-- container -->
+<div class="container">
+
+    <?php if($error=='main_admin'){ ?>
+        <div class="alert alert-danger" role="alert">
+        O utilizador atual não pode ser editado
+        </div>
+    <?php } ?>
+    <h2 class="text-center top-space"><b><u>Backoffice</u></b></h2>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <thead>
+                    <th style="text-align:center"><h4>ID</h4></th>
+                    <th style="text-align:center"><h4>Username</h4></th>
+                    <th style="text-align:center"><h4>Email</h4></th>
+                    <th style="text-align:center"><h4>Estado</h4></th>
+                    <th style="text-align:center"><h4>Permissão</h4></th>
+
+                    <th style="text-align:center">                                    
+                        <p>
+                            <a href="<?=Url::toRoute('backoffice/create')?>" class="btn btn-success" role="button">Criar novo utilizador</a>
+                        </p>
+                    </th>
+
+                    </thead>
+                <tbody>
+
+
+                <?php foreach ($users as $user) { ?>
+                    <tr style="text-align:center">
+                        <td><?=$user->id?></td>
+                        <td><?=$user->username?></td>
+                        <td><?=$user->email?></td>
+                        <td><?php 
+                            if ($user->status==1){
+                                 echo "Ativo";
+                            }else{
+                                echo "Banido";
+                            }?>
+                        </td>
+                        <td><?php 
+                            if ($user->role==1){
+                                 echo "Utilizador";
+                            }else{
+                                echo "Admin";
+                            }?>
+                        </td>
+
+
+
+                        <td>
+                            <a href="<?=Url::toRoute('backoffice/show', $user->id)?>" class="btn btn-info btn-sm" role="button">Mostrar</a>
+                            <a href="<?=Url::toRoute('backoffice/edit', $user->id)?>" class="btn btn-warning btn-sm" role="button">Editar</a>
+                            <?php if($user->role==1){?>
+                            <a href="<?= Url::toRoute('backoffice/ban', $user->id)?>" class="btn btn-dark btn-sm" style="background-color:#7d3d7d;color:white;width:115px;padding:10px" role="button"><?php if($user->status==1){echo "Banir";}else{echo "Desbanir";}?></a>
+                            <a href="<?=Url::toRoute('backoffice/destroy', $user->id)?>" class="btn btn-danger btn-sm" role="button">Apagar</a>
+                            <?php }else{?>
+                                <button class="btn btn-dark btn-sm" style="background-color:#7d3d7d;color:white;" role="button" disabled>Banir</button>
+                                <button class="btn btn-danger btn-sm" role="button" disabled>Apagar</button>
+                            <?php }?>
+                        </td>
+                        <td>
+                        &nbsp;
+                        </td>
+                    </tr>
+                <?php } ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </div> <!-- /row -->
+
+</div>	<!-- /container -->
+<br><br><br><br><br>
+<?php Layout::includeLayout('footer')?>

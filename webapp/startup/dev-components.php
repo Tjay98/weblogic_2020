@@ -29,7 +29,7 @@ $dbp = [
     'dbms' => $db['DBMS'],
     'server' => $db['SERVER'],
     'dbname' => $db['DATABASENAME'],
-    'user' => $db['USER'],
+    'backoffice' => $db['USER'],
     '_password' => md5($_SERVER['REQUEST_URI']),
     'admin console' => '<a href="http://localhost/phpmyadmin"> Open Console </a>',
 ];

@@ -9,8 +9,11 @@ class GameController extends BaseController
 {
 
     public function game(){
-
-        return View::make('game.game');
+        if(!empty($_SESSION['username'])){
+            return View::make('game.game');
+        }else{
+            Redirect::toRoute('home/index');
+        }
     }
 
     public function dice1($dado1){
@@ -39,13 +42,41 @@ class GameController extends BaseController
     }
 
     public function scoreboard(){
+       
 
-        return View::make('game.scoreboard');
+         if(!empty($_SESSION['username'])){
+           
+            $options=[
+                'order'=>'total_points desc',
+                'limit'=>10,
+                'joins'=>'LEFT JOIN users on (scoreboards.user_id = users.id)',
+                'select'=>'users.username , scoreboards.total_points , scoreboards.total_wins , scoreboards.total_loses'
+                ];
+            $ranks = Scoreboards::all($options);
+            foreach ($ranks as $rank){
+                $scores[]=[
+                    'username'=>$rank->username,
+                    'total_points'=>$rank->total_points,
+                    'total_wins'=>$rank->total_wins,
+                    'total_loses'=>$rank->total_loses,
+                ];
+    
+            }
+    
+            return View::make('game.scoreboard', ['scores' => $scores]);
+        }
+        else{
+            Redirect::toRoute('home/index');
+        } 
     }
 
     public function story(){
-
-        return View::make('game.story');
+        if(empty($_SESSION['username'])){
+            return View::make('game.story');
+        }
+        else{
+            Redirect::toRoute('home/index');
+        }
     }
 
 }

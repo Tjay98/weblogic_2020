@@ -21,7 +21,6 @@ Layout::includeLayout('header') ?>
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Criar conta</h3>
-							
 							<hr>
 							
 							<form method="post" id="registerform" action="<?= URL::toRoute('home/registervalidation')?>">
@@ -30,6 +29,17 @@ Layout::includeLayout('header') ?>
 									<input type="text" class="form-control" id="username" name="username">
 									<small id="usernameError" class="text-danger"></small>
 								</div>
+								<div class="top-margin">
+									<label>Nome completo <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="nome_completo" name="nome_completo">
+									<small id="nomeError" class="text-danger"></small>
+								</div>
+								<div class="top-margin">
+									<label>Data de nascimento <span class="text-danger">*</span></label>
+									<input type="date" class="form-control" id="birthday" name="birthday">
+									<small id="dateError" class="text-danger"></small>
+								</div>
+								
 								<div class="top-margin">
 									<label>Email <span class="text-danger">*</span></label>
 									<input type="email" class="form-control" id="email" name="email">
@@ -56,6 +66,8 @@ Layout::includeLayout('header') ?>
 										<button class="btn btn-action" id="registerFormSubmit">Registo</button>
 									</div>
 								</div>
+                                <br>
+								<br>
 							</form>
 						</div>
 					</div>
@@ -69,10 +81,18 @@ Layout::includeLayout('header') ?>
 	</div>	<!-- /container -->
 	<script>
 	$( "#registerFormSubmit" ).click(function(e) {
+		e.preventDefault();
+
 		$('#usernameError').text('');
 		$('#emailError').text('');
-		e.preventDefault();
+		$('#nomeError').text('');
+		$('#dateError').text('');
+		$('#passwordError').text('');
+		$('#repeatError').text('');
+		
 		var username= $('#username').val();
+		var nome_completo= $('#nome_completo').val();
+		var birthday= $('#birthday').val();
 		var email=$('#email').val();
 		var password= $('#password').val();
 		var repeat_password=$('#repeat_password').val();
@@ -84,6 +104,14 @@ Layout::includeLayout('header') ?>
 			var checker=1;
 
 		}
+		else if(nome_completo.length <1){
+			$('#nomeError').text('Preencha o campo');
+			var checker=1;
+		}
+		else if(birthday.length <1){
+			$('#dateError').text('Preencha o campo');
+			var checker=1;
+		}
 		else if(email.length <1){
 			$('#emailError').text('Preencha o campo');
 			var checker=1;
@@ -94,6 +122,7 @@ Layout::includeLayout('header') ?>
 		}
 		else if(password.length>20 || password.length<8){
 			$('#passwordError').text('O campo tem de ter no minimo 8 caracteres e no máximo 20');
+			var checker=1;
 		}
 		else if(repeat_password.length<1){
 			$('#repeatError').text('Preencha o campo');
@@ -128,7 +157,7 @@ Layout::includeLayout('header') ?>
 						$('#emailError').text('Email já existe');
 				   }
 				   else{
-						$('#registerform').submit();
+						/* $('#registerform').submit(); */
 						window.location.replace("http://localhost/weblogic_2020/index");
 
 				   }

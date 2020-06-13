@@ -1,0 +1,30 @@
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+Layout::includeLayout('header'); ?>
+<?php $user = Data::get('users') ?>
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <h3 style="text-align:center;"><u><b>Banir Utilizador</b></u></h3>
+
+        <div class="container text-center">
+            <?php if($user->username!="rodolfo"){?>
+            <h4><b>Username : </b><?php echo $user->username;?></h4>
+            <form class="form-horizontal" method="post" action="<?=Url::toRoute('backoffice/ban', $user->id)?>">
+            <button class="btn btn-danger" type="submit"><?php if($user->status==1){echo "Banir";}else{echo "Desbanir";}?></button>
+            </form>
+            
+            <?php }else{?>
+            <h4>Este utilizador não pode ser banido</h4>
+            <?php }?>
+
+        </div>
+
+        
+    </div>
+</div>
+
+<?php Layout::includeLayout('footer')?>

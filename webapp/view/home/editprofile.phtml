@@ -1,0 +1,99 @@
+<?php
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\Asset;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+Layout::includeLayout('header'); ?>
+<?php $user = Data::get('users'); ?>
+
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <center><img src="http://localhost/weblogic_2020/public/img/jogador.png" alt="profile_image" style="width:200px;"></center>
+
+        <hr>
+
+        <div class="container text-center">
+            <form method="post" id="editprofile" action="<?=Url::toRoute('home/editvalidation')?>">
+                <div class="row">
+                        <div class="top-margin">
+                            <label>Nome completo</label>
+                            <input type="text" class="form-control" id="nome_completo" name="nome_completo" value="<?php echo $user['nome_completo']; ?>">
+                            <small id="nomeError" class="text-danger"></small>
+                        </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-lg-6">
+                            <div class="top-margin">
+                                <label>Email </label>
+                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $user['email']; ?>">
+                                <small id="emailError" class="text-danger"></small>
+                                <small id="emailValidation" class="text-danger"><?php if(!empty($user['error'])){echo "Email utilizado já existe no sistema";}?></small>
+                            </div>
+                    </div>
+                    <div class="col-lg-6">
+
+                            <div class="top-margin">
+                                <label>Data de nascimento</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday" value="<?php echo $user['birthday']; ?>">
+                                <small id="dateError" class="text-danger"></small>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                <br>
+					<center>
+						<button class="btn btn-action" id="editProfileSubmit">Editar perfil</button>
+					</center>
+                </div>
+            
+            
+            
+            </form>
+        </div>
+
+        
+    </div>
+</div>
+<script>
+$( "#editProfileSubmit" ).click(function(e) {
+	e.preventDefault();
+		$('#emailError').text('');
+		$('#nomeError').text('');
+		$('#dateError').text('');
+		
+		
+	
+		var nome_completo= $('#nome_completo').val();
+		var birthday= $('#birthday').val();
+		var email=$('#email').val();
+
+		var checker= 0;
+
+		
+		if(nome_completo.length <1){
+			$('#nomeError').text('Preencha o campo');
+			var checker=1;
+		}
+		else if(birthday.length <1){
+			$('#dateError').text('Preencha o campo');
+			var checker=1;
+		}
+		else if(email.length <1){
+			$('#emailError').text('Preencha o campo');
+			var checker=1;
+		}
+		else{
+			var checker=0;
+			
+		}
+		
+
+		if(checker==0){
+            $('#editprofile').submit();
+        }
+});
+</script>
+
+<?php Layout::includeLayout('footer')?>

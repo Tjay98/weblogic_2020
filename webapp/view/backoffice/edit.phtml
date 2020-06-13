@@ -1,0 +1,108 @@
+<?php use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+use ArmoredCore\WebObjects\Layout;
+use ArmoredCore\WebObjects\URL;
+
+Layout::includeLayout('header') ?>
+<?php $users = Data::get('backoffice') ?>
+<?php ErrMgr::attach($users) ?>
+
+	<!-- container -->
+	<div class="container">
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Update</h1>
+				</header>
+				
+
+					<div class="panel panel-default">
+						<div class="panel-body">
+
+                            <hr>
+
+
+							<form class="form-horizontal" method="post" action="<?=Url::toRoute('backoffice/update', $users->id)?>">
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="name">Email:<span class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="text" required value="<?=$users->email?>" class="form-control" name="email" placeholder="Email">
+                                        <?= ErrMgr::bind('email') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="name">Nome completo:<span class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="text" required value="<?=$users->nome_completo?>" class="form-control" name="nome_completo" placeholder="Nome completo">
+                                        <?= ErrMgr::bind('nome_completo') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="name">Data de nascimento:<span class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="date" required value="<?=$users->birthday?>" class="form-control" name="birthday" placeholder="Data de nascimento">
+                                        <?= ErrMgr::bind('birthday') ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="name">Password:<span class="text-danger">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="password" value="" class="form-control" name="password" placeholder="Password">
+                                        <?= ErrMgr::bind('password') ?>
+                                    </div>
+                                </div>
+                                <?php 
+                                if(($users->role!=2)||($_SESSION['username']=='rodolfo')){?>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="name">Estado:<span class="text-danger">*</span></label>
+                                        <div class="col-sm-6">
+                                            <select id="status" name="status" class="form-control" required>
+                                            <option value="1" <?php if($users->status==1){echo "selected";}?>>Ativo</option>
+                                            <option value="2" <?php if($users->status==2){echo "selected";}?>>Banido</option>
+                                            </select>
+                                            <?= ErrMgr::bind('status') ?>
+
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="name">Permissão:<span class="text-danger">*</span></label>
+                                        <div class="col-sm-6">
+                                            <select id="role" name="role" class="form-control" required>
+                                            <option value="1" <?php if($users->role==1){echo "selected";}?>>User</option>
+                                            <option value="2" <?php if($users->role==2){echo "selected";}?>>Admin</option>
+                                            </select>
+                                            <?= ErrMgr::bind('role') ?>
+                                        </div>
+                                    </div>
+                                <?php }?>
+                                    
+								<hr>
+
+									<div class="col">
+										<button class="btn btn-success" type="submit">Gravar alterações</button>
+                                        <a href="<?=Url::toRoute('backoffice/index')?>" class="btn btn-action" type="submit">Voltar</a>
+									</div>
+
+                                </form>
+                                
+
+								</div>
+							
+                            
+						</div>
+					</div>
+
+
+				
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->
+
+<?php Layout::includeLayout('footer') ?>
