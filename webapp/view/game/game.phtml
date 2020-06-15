@@ -71,8 +71,12 @@ Layout::includeLayout('header'); ?>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button id="dicebutton"   class="btn btn-md btn-primary center-block" method="post" action="<?=Url::toRoute('game/rolldice')?>">Roll Dice </button>
-                                
+                                <form id="dice_roll_form" method="post" action="<?=Url::toRoute('game/rolldice')?>">
+                                    <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
+                                    <input type="hidden" name="dice1" value="TEMPORARIO SUBSTITUIR VALOR">
+                                    <input type="hidden" name="dice2" value="TEMPORARIO SUBSTITUIR VALOR">
+
+                                </form>                                
                             </div>
                             
                         </div>
@@ -210,5 +214,30 @@ Layout::includeLayout('header'); ?>
                 </div>-->
             </div>
 </div>
+<script>
+    $( "#dicebutton" ).click(function(e) {
+		e.preventDefault();
+
+			
+        	//alert(budgetData);
+
+         $.ajax({
+                type: 'POST',
+                url: '<?=  URL::toRoute('game/rolldice') ?>', 
+                cache: false,    
+                data: ,
+                success: function(data){  
+
+                   alert(data);
+
+                   
+                }
+			});
+			return false;
+
+		
+
+	});
+</script>
 
 
