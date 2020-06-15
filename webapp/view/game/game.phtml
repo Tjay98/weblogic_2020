@@ -217,18 +217,19 @@ Layout::includeLayout('header'); ?>
 <script>
     $( "#dicebutton" ).click(function(e) {
 		e.preventDefault();
-
-			
-        	//alert(budgetData);
-
+        //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
+        var dado1="COLOCAR VALOR";
+        var dado2="COLOCAR VALOR";
          $.ajax({
                 type: 'POST',
                 url: '<?=  URL::toRoute('game/rolldice') ?>', 
                 cache: false,    
-                data: ,
+                //CONVEM ENVIAR ALGO NO CAMPO ABAIXO POR EXEMPLO data:{id:id}
+                data: {dado1:dado1,dado2:dado2} ,
                 success: function(data){  
 
                    alert(data);
+                   //PREENCHER COM INFORMAÇÃO. ISTO RECEBE CENAS, OU SEJA PODES MODIFICAR CASO RETORNE ALGO E PODES REMOVER O ALERT
 
                    
                 }
