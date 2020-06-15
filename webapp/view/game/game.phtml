@@ -82,80 +82,90 @@ Layout::includeLayout('header'); ?>
                             <div class="col-xs-6 col-xs-offset-3">
                                 <div class="dicecell" id="d1" method="get" action="  <?=Url::toRoute('game/dado1')?>  ">
                                     <?php
-                                    if($dado1==1){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
-                                        <?php
+                                    if(!empty($dado1)){
+                                        if($dado1==1){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
+                                            <?php
+                                        }
+                                        if($dado1==2){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
+                                            <?php
+                                        }
+                                        if($dado1==3){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
+                                            <?php
+                                        }
+                                        if($dado1==4){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
+                                            <?php
+                                        }
+                                        if($dado1==5){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
+                                            <?php
+                                        }
+                                        if($dado1==6){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
+                                            <?php
+                                        }
                                     }
-                                    if($dado1==2){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
-                                        <?php
-                                    }
-                                    if($dado1==3){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
-                                        <?php
-                                    }
-                                    if($dado1==4){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
-                                        <?php
-                                    }
-                                    if($dado1==5){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
-                                        <?php
-                                    }
-                                    if($dado1==6){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
-                                        <?php
-                                    }
+                                    
                                     ?>
                                 </div>
                                 <div class="dicecell" id="d2" method="get" action="  <?=Url::toRoute('game/dado2') ?> ">
 
                                     <?php
-                                    if($dado2==1){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
-                                        <?php
+                                    if(!empty($dado2)){
+                                        if($dado2==1){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
+                                            <?php
+                                        }
+                                        if($dado2==2){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
+                                            <?php
+                                        }
+                                        if($dado2==3){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
+                                            <?php
+                                        }
+                                        if($dado2==4){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
+                                            <?php
+                                        }
+                                        if($dado2==5){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
+                                            <?php
+                                        }
+                                        if($dado2==6){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
+                                            <?php
+                                        }
                                     }
-                                    if($dado2==2){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
-                                        <?php
-                                    }
-                                    if($dado2==3){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
-                                        <?php
-                                    }
-                                    if($dado2==4){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
-                                        <?php
-                                    }
-                                    if($dado2==5){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
-                                        <?php
-                                    }
-                                    if($dado2==6){
-                                        ?>
-                                        <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
-                                        <?php
-                                    }
+                                    
                                     ?>
                                 </div>
                             </div>
                             <div class="row"><span class="pinst"  action="<?=Url::toRoute('game/sumdice')?>"></span></div>
                         </div>
                         <div id="novoJogo" class="col-xs-12">
-                <form method="post" action="<?= Url::toRoute('game/game') ?>">
-                    <button class="btn btn-success center-block">Novo Jogo</button>
-                </form>
+
+                <!-- verificar se têm uma sessão de jogo-->
+                <?php if(empty($_SESSION['game'])){?>
+                    <form method="post" action="<?= Url::toRoute('game/game') ?>">
+                        <button class="btn btn-success center-block">Novo Jogo</button>
+                    </form>
+                <?php }?>
             </div>
                         </div>
                     <div class="col-xs-1">

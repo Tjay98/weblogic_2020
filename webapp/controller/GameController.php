@@ -10,7 +10,14 @@ class GameController extends BaseController
 
     public function game(){
         if(!empty($_SESSION['username'])){
-            return View::make('game.game');
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return View::make('game.game');
+            }
+            else{
+                Session::set('game','1');
+                return View::make('game.game');
+
+            }
         }else{
             Redirect::toRoute('home/index');
         }
