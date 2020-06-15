@@ -23,20 +23,20 @@ class GameController extends BaseController
     }
 
     public function dice2($dado2){
-        $dado2 = new Games();
-        $dado2->dice2($dado2);
-        Redirect::toRoute('game/dice2');
-        }
+    $dado2 = new Games();
+    $dado2->dice2($dado2);
+    Redirect::toRoute('game/dice2');
+    }
 
 
-        public function rolldice(){
-            $total = new Games();
-            $total->SumDice($total);
-            Redirect::toRoute('game/rolldice');
-        }
+    public function rolldice(){
+    $total = new Games();
+    $total->SumDice($total);
+    Redirect::toRoute('game/rolldice');
+    }
 
     public function SumDice($total){
-        $total = $dado1 + $dado2;
+    $total = $dado1 + $dado2;
         
         Redirect::toRoute('game/sumdice');
     }
