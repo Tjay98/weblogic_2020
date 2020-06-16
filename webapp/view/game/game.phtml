@@ -6,6 +6,11 @@ use ArmoredCore\WebObjects\URL;
 
 
 Layout::includeLayout('header'); ?>
+<head>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+</head>
+
 
 <div class="col-xs-12 col-sm-8 col-md-8 col-md-offset-2">
 <div class="game-container center-block col-8" >
@@ -66,20 +71,106 @@ Layout::includeLayout('header'); ?>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button id="dicebutton"   class="btn btn-md btn-primary center-block" method="post" action="<?=Url::toRoute('game/rolldice')?>">Roll Dice </button>
-                                
+                                <form id="dice_roll_form" method="post" action="<?=Url::toRoute('game/rolldice')?>">
+                                    <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
+                                    <input type="hidden" name="dice1" value="TEMPORARIO SUBSTITUIR VALOR">
+                                    <input type="hidden" name="dice2" value="TEMPORARIO SUBSTITUIR VALOR">
+
+                                </form>                                
                             </div>
+                            
                         </div>
+                      
                         <div class="row"></div>
                         <div class="row center-block">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <div class="dicecell" id="d1" method="get" action="  <?=Url::toRoute('user/dado1')?>  ">
+                                <div class="dicecell" id="d1" method="get" action="  <?=Url::toRoute('game/dado1')?>  ">
+                                    <?php
+                                    if(!empty($dado1)){
+                                        if($dado1==1){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
+                                            <?php
+                                        }
+                                        if($dado1==2){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
+                                            <?php
+                                        }
+                                        if($dado1==3){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
+                                            <?php
+                                        }
+                                        if($dado1==4){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
+                                            <?php
+                                        }
+                                        if($dado1==5){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
+                                            <?php
+                                        }
+                                        if($dado1==6){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
+                                            <?php
+                                        }
+                                    }
+                                    
+                                    ?>
                                 </div>
-                                <div class="dicecell" id="d2" method="get" action="  <?=Url::toRoute('user/dado2') ?> ">
+                                <div class="dicecell" id="d2" method="get" action="  <?=Url::toRoute('game/dado2') ?> ">
+
+                                    <?php
+                                    if(!empty($dado2)){
+                                        if($dado2==1){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
+                                            <?php
+                                        }
+                                        if($dado2==2){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
+                                            <?php
+                                        }
+                                        if($dado2==3){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
+                                            <?php
+                                        }
+                                        if($dado2==4){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
+                                            <?php
+                                        }
+                                        if($dado2==5){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
+                                            <?php
+                                        }
+                                        if($dado2==6){
+                                            ?>
+                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
+                                            <?php
+                                        }
+                                    }
+                                    
+                                    ?>
                                 </div>
                             </div>
                             <div class="row"><span class="pinst"  action="<?=Url::toRoute('game/sumdice')?>"></span></div>
                         </div>
+                        <div id="novoJogo" class="col-xs-12">
+
+                <!-- verificar se têm uma sessão de jogo-->
+                <?php if(empty($_SESSION['game'])){?>
+                    <form method="post" action="<?= Url::toRoute('game/game') ?>">
+                        <button class="btn btn-success center-block">Novo Jogo</button>
+                    </form>
+                <?php }?>
+            </div>
                         </div>
                     <div class="col-xs-1">
                         <div class="score-current1" id="r11">
@@ -123,5 +214,31 @@ Layout::includeLayout('header'); ?>
                 </div>-->
             </div>
 </div>
+<script>
+    $( "#dicebutton" ).click(function(e) {
+		e.preventDefault();
+        //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
+        var dado1="COLOCAR VALOR";
+        var dado2="COLOCAR VALOR";
+         $.ajax({
+                type: 'POST',
+                url: '<?=  URL::toRoute('game/rolldice') ?>', 
+                cache: false,    
+                //CONVEM ENVIAR ALGO NO CAMPO ABAIXO POR EXEMPLO data:{id:id}
+                data: {dado1:dado1,dado2:dado2} ,
+                success: function(data){  
+
+                   alert(data);
+                   //PREENCHER COM INFORMAÇÃO. ISTO RECEBE CENAS, OU SEJA PODES MODIFICAR CASO RETORNE ALGO E PODES REMOVER O ALERT
+
+                   
+                }
+			});
+			return false;
+
+		
+
+	});
+</script>
 
 
