@@ -22,27 +22,31 @@ class Games extends \ActiveRecord\Model {
     {
        
     }
-
+//numero aleatório do dado 1
     protected function dice1($dado1){
         $dado1 = rand(1,6);
         return $dado1;
     }
+
+    //numero aleatório do dado 2
     protected function dice2($dado2){
         $dado2 = rand(1,6);
         return $dado2;
     }
 
   
-
-    protected function SumDice($totalDice){
+//somar o valor do dado 1 e do dado 2
+    protected function SumDice(){
         $totalDice = $dado1 + $dado2;
         return $totalDice;
     }
 
+    //mudar o jogador
     public function changeCurrentPlayer() { //mudar o turno do jogador
         $this->_playerTurn = !$this->_playerTurn; //se era o bot a jogar passa a ser o jogador
     }
 
+    //compara o valor do dados com as caixas
     public function CompareDiceBoxes()
     {
         for ($i = 0; $i < $_selectedNumbersArray; $i++) {
@@ -59,6 +63,7 @@ class Games extends \ActiveRecord\Model {
           }
     }
     
+    //para saber se ganha
     public function WinGame()
     {
         if ($numbersPlayed === 9) {

@@ -22,29 +22,31 @@ class GameController extends BaseController
             Redirect::toRoute('home/index');
         }*/
     }
-
+//buscar dado 1 do games
     public function dice1($dado1){
     $dado1 = new Games();
     $dado1->dice1($dado1);
     return $dado1;
     }
-
+//buscar dado 2 do games
     public function dice2($dado2){
     $dado2 = new Games();
     $dado2->dice2($dado2);
     return $dado2;
     }
 
-
-    public function rolldice($total){
+//no games buscar a soma dos dados 1 e 2
+    public function rolldice(){
     $total = new Games();
     $total->SumDice($totalDice);
     return $total;
  }
 
+ //no games ir buscar o comparediceboxes
  public function play(){
     $game= new Games();
     $game->CompareDiceBoxes();
+
 
  }
  
