@@ -71,10 +71,10 @@ Layout::includeLayout('header'); ?>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <form id="dice_roll_form" method="post" action="<?=Url::toRoute('game/rolldice')?>">
+                                <form id="dice_roll_form" method="post" >
                                     <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
-                                    <input type="hidden" name="dice1" value=<?=Url::toRoute('game/dado1')?> >
-                                    <input type="hidden" name="dice2" value=<?=Url::toRoute('game/dado2')?> >
+                                    <input type="text" name="dice1" id="dice1" value="<?php if(!empty($dice1)){echo $dice1;}?>" >
+                                    <input type="text" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" >
 
                                 </form>                                
                             </div>
@@ -90,31 +90,37 @@ Layout::includeLayout('header'); ?>
                                         if($dado1==1){
                                             ?>
                                             <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite1.png')?>" alt="Die 1">
+                                            <input type="hidden" id="dice1-check" value="">
                                             <?php
                                         }
                                         if($dado1==2){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite2.png')?>" alt="Die 2">
+                                            <img id="dice2" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite2.png')?>" alt="Die 2">
+                                            <input type="hidden" id="dice2-check" value="">
                                             <?php
                                         }
                                         if($dado1==3){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite3.png')?>" alt="Die 3">
+                                            <img id="dice3" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite3.png')?>" alt="Die 3">
+                                            <input type="hidden" id="dice3-check" value="">
                                             <?php
                                         }
                                         if($dado1==4){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite4.png')?>" alt="Die 4">
+                                            <img id="dice4" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite4.png')?>" alt="Die 4">
+                                            <input type="hidden" id="dice4-check" value="">
                                             <?php
                                         }
                                         if($dado1==5){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite5.png')?>" alt="Die 5">
+                                            <img id="dice5" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite5.png')?>" alt="Die 5">
+                                            <input type="hidden" id="dice5-check" value="">
                                             <?php
                                         }
                                         if($dado1==6){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite6.png')?>" alt="Die 6">
+                                            <img id="dice6" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite6.png')?>" alt="Die 6">
+                                            <input type="hidden" id="dice6-check" value="">
                                             <?php
                                         }
                                     }
@@ -160,7 +166,7 @@ Layout::includeLayout('header'); ?>
                                     ?>
                                 </div>
                             </div>
-                            <div class="row"><span class="pinst"  action="<?=Url::toRoute('game/sumdice')?>"></span></div>
+                            <div class="row" id="appenddice"></div>
                         </div>
                         <div id="novoJogo" class="col-xs-12">
 
@@ -213,29 +219,40 @@ Layout::includeLayout('header'); ?>
                     </div>
                 </div>-->
             </div>
+            
 </div>
 <script>
     $( "#dicebutton" ).click(function(e) {
 		e.preventDefault();
         //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
-        var dado1=<?=  URL::toRoute('game/dice1') ?>;
-        var dado2=<?=  URL::toRoute('game/dice2') ?>;
-         $.ajax({
+        var playerdice1=$('#dice1').val();
+        var playerdice2=$('#dice2').val();
+        var enemydice1='';
+        var enemydice1='';
+/*          $.ajax({
                 type: 'POST',
-                url: '<?=  URL::toRoute('game/rolldice') ?>', 
+                url: '<?=  URL::toRoute('game/randomdice') ?>', 
                 cache: false,    
-                //CONVEM ENVIAR ALGO NO CAMPO ABAIXO POR EXEMPLO data:{id:id}
-                data: {dado1:dado1,dado2:dado2} ,
+                data: {dice1:1} ,
                 success: function(data){  
 
                    alert(data);
-                   //PREENCHER COM INFORMAÇÃO. ISTO RECEBE CENAS, OU SEJA PODES MODIFICAR CASO RETORNE ALGO E PODES REMOVER O ALERT
 
                    
                 }
-			});
-			return false;
+			}); */
+			var playerdice1=Math.floor(Math.random() * 6) + 1  
+            var playerdice2=Math.floor(Math.random() * 6) + 1  
+            $('#dice1').val(playerdice1);
+            $('#dice2').val(playerdice2);
 
+            var html="<div class='col-md-4'>";
+            html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice1+".png' >";
+            html+="</div>";
+            html+="<div class='col-md-4'>";
+            html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice2+".png' >";
+            html+="</div>";
+            $('#appenddice').html(html);
 		
 
 	});

@@ -9,19 +9,31 @@ class GameController extends BaseController
 {
 
     public function game(){
-       /* if(!empty($_SESSION['username'])){
+        if(!empty($_SESSION['username'])){
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 return View::make('game.game');
             }
             else{
-                Session::set('game','1');*/
+                Session::set('game','1');
                 return View::make('game.game');
 
-          /*  }
+            }
         }else{
             Redirect::toRoute('home/index');
-        }*/
+        }
     }
+
+
+    public function randomdice(){
+        if(!empty($_POST['dice1'])){
+            $dice=rand(1, 6);
+
+            echo $dice;
+        }
+
+    }
+    
+
 //buscar dado 1 do games
     public function dice1($dado1){
     $dado1 = new Games();
