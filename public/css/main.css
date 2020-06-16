@@ -109,6 +109,7 @@ img.pull-left { margin-right: 10px; }
 .pinst { color: #FFF; font-size: 1.2em; text-align: center; }
 #animated-example { border: solid 0px #1A7404; position: relative; background-color: transparent; }
 .animated { -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
+.noselect { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
 @-webkit-keyframes bounceInUp {
     0% { opacity: 0; -webkit-transform: translateY(2000px); }

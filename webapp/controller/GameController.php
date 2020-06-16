@@ -9,44 +9,47 @@ class GameController extends BaseController
 {
 
     public function game(){
-        if(!empty($_SESSION['username'])){
+       /* if(!empty($_SESSION['username'])){
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 return View::make('game.game');
             }
             else{
-                Session::set('game','1');
+                Session::set('game','1');*/
                 return View::make('game.game');
 
-            }
+          /*  }
         }else{
             Redirect::toRoute('home/index');
-        }
+        }*/
     }
 
     public function dice1($dado1){
     $dado1 = new Games();
     $dado1->dice1($dado1);
-    Redirect::toRoute('game/dice1');
+    return $dado1;
     }
 
     public function dice2($dado2){
     $dado2 = new Games();
     $dado2->dice2($dado2);
-    Redirect::toRoute('game/dice2');
+    return $dado2;
     }
 
 
-    public function rolldice(){
+    public function rolldice($total){
     $total = new Games();
-    $total->SumDice($total);
-    Redirect::toRoute('game/rolldice');
-    }
+    $total->SumDice($totalDice);
+    return $total;
+ }
 
-    public function SumDice($total){
-    $total = $dado1 + $dado2;
+ public function play(){
+    $game= new Games();
+    $game->CompareDiceBoxes();
+
+ }
+ 
         
-        Redirect::toRoute('game/sumdice');
-    }
+    
 
     public function scoreboard(){
        

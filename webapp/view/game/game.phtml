@@ -48,7 +48,7 @@ Layout::includeLayout('header'); ?>
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="player-cell">
-                                    <img src="http://localhost/weblogic_2020/public/img/jogador.png" id="p1i" alt="Player" class="center-block">
+                                    <img src="<?= Asset::image('jogador.png')?>" id="p1i" alt="Player" class="center-block">
                                     <div class="wrapper">
                                         <div style="display: block;" class="caption post-content finalmsg" id="p1msgdiv">&nbsp;</div>
                                     </div>
@@ -59,7 +59,7 @@ Layout::includeLayout('header'); ?>
                             </div>
                             <div class="col-xs-6">
                                 <div class="player-cell">
-                                    <img src="http://localhost/weblogic_2020/public/img/pc.png" id="p2i" alt="Computer" class="center-block">
+                                    <img src="<?= Asset::image('pc.png')?>" id="p2i" alt="Computer" class="center-block">
                                     <div class="wrapper">
                                         <div style="display: block;" class="caption post-content finalmsg" id="p2msgdiv">&nbsp;</div>
                                     </div>
@@ -73,8 +73,8 @@ Layout::includeLayout('header'); ?>
                             <div class="col-xs-12">
                                 <form id="dice_roll_form" method="post" action="<?=Url::toRoute('game/rolldice')?>">
                                     <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
-                                    <input type="hidden" name="dice1" value="TEMPORARIO SUBSTITUIR VALOR">
-                                    <input type="hidden" name="dice2" value="TEMPORARIO SUBSTITUIR VALOR">
+                                    <input type="hidden" name="dice1" value=<?=Url::toRoute('game/dado1')?> >
+                                    <input type="hidden" name="dice2" value=<?=Url::toRoute('game/dado2')?> >
 
                                 </form>                                
                             </div>
@@ -89,32 +89,32 @@ Layout::includeLayout('header'); ?>
                                     if(!empty($dado1)){
                                         if($dado1==1){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite1.png')?>" alt="Die 1">
                                             <?php
                                         }
                                         if($dado1==2){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite2.png')?>" alt="Die 2">
                                             <?php
                                         }
                                         if($dado1==3){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite3.png')?>" alt="Die 3">
                                             <?php
                                         }
                                         if($dado1==4){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite4.png')?>" alt="Die 4">
                                             <?php
                                         }
                                         if($dado1==5){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite5.png')?>" alt="Die 5">
                                             <?php
                                         }
                                         if($dado1==6){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite6.png')?>" alt="Die 6">
                                             <?php
                                         }
                                     }
@@ -127,32 +127,32 @@ Layout::includeLayout('header'); ?>
                                     if(!empty($dado2)){
                                         if($dado2==1){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite1.png" alt="Die 1">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite1.png')?>" alt="Die 1">
                                             <?php
                                         }
                                         if($dado2==2){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite2.png" alt="Die 2">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite2.png')?>" alt="Die 2">
                                             <?php
                                         }
                                         if($dado2==3){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite3.png" alt="Die 3">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite3.png')?>" alt="Die 3">
                                             <?php
                                         }
                                         if($dado2==4){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite4.png" alt="Die 4">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite4.png')?>" alt="Die 4">
                                             <?php
                                         }
                                         if($dado2==5){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite5.png" alt="Die 5">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite5.png')?>" alt="Die 5">
                                             <?php
                                         }
                                         if($dado2==6){
                                             ?>
-                                            <img id="dice1" class="img-responsive die" src="http://localhost/weblogic_2020/public/img/Dice/dieWhite6.png" alt="Die 6">
+                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite6.png')?>" alt="Die 6">
                                             <?php
                                         }
                                     }
@@ -218,8 +218,8 @@ Layout::includeLayout('header'); ?>
     $( "#dicebutton" ).click(function(e) {
 		e.preventDefault();
         //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
-        var dado1="COLOCAR VALOR";
-        var dado2="COLOCAR VALOR";
+        var dado1=<?=  URL::toRoute('game/dice1') ?>;
+        var dado2=<?=  URL::toRoute('game/dice2') ?>;
          $.ajax({
                 type: 'POST',
                 url: '<?=  URL::toRoute('game/rolldice') ?>', 

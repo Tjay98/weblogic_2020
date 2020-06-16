@@ -6,7 +6,7 @@ class Games extends \ActiveRecord\Model {
 
     protected $dice1;
     protected $dice2;
-    protected $total;
+    protected $totalDice;
 
 
     private $_numbersPlayed;
@@ -20,8 +20,7 @@ class Games extends \ActiveRecord\Model {
 
     public function __construct()
     {
-        $this->_dice= new Dice();
-        $this->SumDice();
+       
     }
 
     protected function dice1($dado1){
@@ -35,9 +34,9 @@ class Games extends \ActiveRecord\Model {
 
   
 
-    protected function SumDice($total){
-        $total = $dado1 + $dado2;
-        return $total;
+    protected function SumDice($totalDice){
+        $totalDice = $dado1 + $dado2;
+        return $totalDice;
     }
 
     public function changeCurrentPlayer() { //mudar o turno do jogador
@@ -56,14 +55,13 @@ class Games extends \ActiveRecord\Model {
             incorrectPopup();
             $numDiv.removeClass("selected");
           } else {
-            playedNumbers();
             rollTheDice();
           }
     }
     
     public function WinGame()
     {
-        if ($numbersPlayed === 10) {
+        if ($numbersPlayed === 9) {
             winGamePopup();
         } else {
             return;
