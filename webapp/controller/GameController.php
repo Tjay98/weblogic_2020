@@ -25,11 +25,9 @@ class GameController extends BaseController
 
 
     public function randomdice(){
-        if(!empty($_POST['dice1'])){
-            $dice=rand(1, 6);
 
-            echo $dice;
-        }
+       //$_SESSION['pontos']=$_POST['playerpoints'];
+       print_r($_POST);
 
     }
     

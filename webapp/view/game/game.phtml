@@ -17,31 +17,32 @@ Layout::includeLayout('header'); ?>
                 <div class="row center-block ">
                     <div class="col-xs-2">
                         <div class="score-current" id="r1">
-                            <div class="price" id="p1c1">1</div>
+                            <button class="price" id="point1" onclick="checkifpossible(1)" disabled>1</button>
                         </div>
                         <div class="score-current" id="r2">
-                            <div class="price" id="p1c2">2</div>
+                            <button class="price" id="point2" onclick="checkifpossible(2)" disabled>2</button>
                         </div>
                         <div class="score-current" id="r3">
-                            <div class="price" id="p1c3">3</div>
+                            <button class="price" id="point3" onclick="checkifpossible(3)" disabled>3</button>
                         </div>
                         <div class="score-current" id="r4">
-                            <div class="price" id="p1c4">4</div>
+                            <button class="price" id="point4" onclick="checkifpossible(4)" disabled>4</button>
                         </div>
                         <div class="score-current" id="r5">
-                            <div class="price" id="p1c5">5</div>
+                            <button class="price" id="point5" onclick="checkifpossible(5)" disabled>5</button>
                         </div>
                         <div class="score-current" id="r6">
-                            <div class="price" id="p1c6">6</div>
+                            <button class="price" id="point6" onclick="checkifpossible(6)" disabled>6</button>
                         </div>
                         <div class="score-current" id="r7">
-                            <div class="price" id="p1c7">7</div>
+                            <button class="price" id="point7" onclick="checkifpossible(7)" disabled>7</button>
                         </div>
                         <div class="score-current" id="r8">
-                            <div class="price" id="p1c8">8</div>
+                            <button class="price" id="point8" onclick="checkifpossible(8)" disabled>8</button>
                         </div>
                         <div class="score-current" id="r9">
-                            <div class="price" id="p1c9">9</div>
+                            <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
+                            
                         </div>
                     </div>
                     <div class="col-xs-5">
@@ -75,6 +76,11 @@ Layout::includeLayout('header'); ?>
                                     <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
                                     <input type="text" name="dice1" id="dice1" value="<?php if(!empty($dice1)){echo $dice1;}?>" >
                                     <input type="text" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" >
+                                    
+                                    <input type="text" name="sumpoints" id="sumpoints" value="0" >
+                                    <input type="text" name="playerpoints" id="playerpoints" value="0" >
+                                    <div id="appendselected"></div>
+                                    
 
                                 </form>                                
                             </div>
@@ -222,40 +228,153 @@ Layout::includeLayout('header'); ?>
             
 </div>
 <script>
+
+    //valores possiveis
+    var playerpoint1=1;
+    var playerpoint2=2;
+    var playerpoint3=3;
+    var playerpoint4=4;
+    var playerpoint5=5;
+    var playerpoint6=6;
+    var playerpoint7=7;
+    var playerpoint8=8;
+    var playerpoint9=9;
+
+    //valores possiveis
+    var enemypoint1=1;
+    var enemypoint2=2;
+    var enemypoint3=3;
+    var enemypoint4=4;
+    var enemypoint5=5;
+    var enemypoint6=6;
+    var enemypoint7=7;
+    var enemypoint8=8;
+    var enemypoint9=9;
+
+    var playertotal=0;
+    var enemytotal=0;
+    
+    //variavel para contar os numeros selecionados
+    var count=0;
+
+
     $( "#dicebutton" ).click(function(e) {
 		e.preventDefault();
         //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
         var playerdice1=$('#dice1').val();
         var playerdice2=$('#dice2').val();
-        var enemydice1='';
-        var enemydice1='';
-/*          $.ajax({
-                type: 'POST',
-                url: '<?=  URL::toRoute('game/randomdice') ?>', 
-                cache: false,    
-                data: {dice1:1} ,
-                success: function(data){  
 
-                   alert(data);
 
-                   
-                }
-			}); */
+
 			var playerdice1=Math.floor(Math.random() * 6) + 1  
             var playerdice2=Math.floor(Math.random() * 6) + 1  
             $('#dice1').val(playerdice1);
             $('#dice2').val(playerdice2);
 
-            var html="<div class='col-md-4'>";
+            var html="<div class='col-md-6 col-lg-6 col-sm-12'>";
             html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice1+".png' >";
             html+="</div>";
-            html+="<div class='col-md-4'>";
+            html+="<div class='col-md-6 col-lg-6 col-sm-12'>";
             html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice2+".png' >";
             html+="</div>";
             $('#appenddice').html(html);
+
+
+            //calcula a soma de pontos
+            var sumpoints= playerdice1+playerdice2;
+            $('#sumpoints').val(sumpoints);
+
+
+            //abilita clicar nos botões
+            $('#point1').prop('disabled',false);
+            $('#point2').prop('disabled',false);
+            $('#point3').prop('disabled',false);
+            $('#point4').prop('disabled',false);
+            $('#point5').prop('disabled',false);
+            $('#point6').prop('disabled',false);
+            $('#point7').prop('disabled',false);
+            $('#point8').prop('disabled',false);
+            $('#point9').prop('disabled',false);
+
+            //remove a opção de rodar
+            $('#dicebutton').prop('disabled',true);
+            
 		
 
-	});
+    });
+    
+    
+    function checkifpossible(number){
+        count++;
+        if(number!=0){
+            //pegar as variaveis que estão nos inputs
+            var sumpoints = $('#sumpoints').val();
+            var playerpoints= $('#playerpoints').val();
+
+            if(sumpoints >= number){
+                
+                //subtrair 
+                sumpoints = sumpoints-number;
+                alert(sumpoints);
+
+
+                //adicionar os campos com os pontos escondigos
+                var html="<input type='text' value='"+number+"' name='numberselected["+count+"]' id='numberselected["+count+"]'>";
+                $('#appendselected').append(html);
+                $('#sumpoints').val(sumpoints);
+                
+                //soma de pontos -erro corrigir
+                newplayerpoints=playerpoints+number;
+                $('#playerpoints').val(newplayerpoints);
+            
+                if(sumpoints==0){
+
+
+                    $('#point1').prop('disabled',true);
+                    $('#point2').prop('disabled',true);
+                    $('#point3').prop('disabled',true);
+                    $('#point4').prop('disabled',true);
+                    $('#point5').prop('disabled',true);
+                    $('#point6').prop('disabled',true);
+                    $('#point7').prop('disabled',true);
+                    $('#point8').prop('disabled',true);
+                    $('#point9').prop('disabled',true);
+
+                    //remove a opção de rodar
+                    $('#dicebutton').prop('disabled',false);
+
+
+                    //manda as variaveis para o controlador
+                    var formdata = $('#dice_roll_form').serialize();
+                        $.ajax({
+                        type: 'POST',
+                        url: '<?=  URL::toRoute('game/randomdice') ?>', 
+                        cache: false,    
+                        data: formdata ,
+                        success: function(data){  
+
+                        alert(data);
+
+                        
+                            }
+                        });  
+                        return false;
+                }
+                else if(sumpoints<0){
+                    alert('ERRO NÚMERO MAIOR');
+                }
+
+            }
+            else{
+                alert('Não é possível selecionar, número superior à soma de dados');
+            } 
+            
+        }
+        else{
+
+        }
+
+    }
 </script>
 
 
