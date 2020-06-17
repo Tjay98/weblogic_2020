@@ -164,6 +164,9 @@ Layout::includeLayout('header'); ?>
     var playertotal=0;
     var enemytotal=0;
     
+
+
+
     //variavel para contar os numeros selecionados
     var count=0;
 
@@ -173,8 +176,6 @@ Layout::includeLayout('header'); ?>
         //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
         var playerdice1=$('#dice1').val();
         var playerdice2=$('#dice2').val();
-
-
 
 			var playerdice1=Math.floor(Math.random() * 6) + 1  
             var playerdice2=Math.floor(Math.random() * 6) + 1  
@@ -200,8 +201,8 @@ Layout::includeLayout('header'); ?>
             var sumpoints= playerdice1+playerdice2;
             $('#sumpoints').val(sumpoints);
 
-            
-
+            //se os pontos finais forem inferiores a soma dos dados  vai bloquear tudo
+         //   if( $('#winGame') >=   sumpoints){
 
             //abilita clicar nos botões
             $('#point1').prop('disabled',false);
@@ -215,9 +216,24 @@ Layout::includeLayout('header'); ?>
             $('#point9').prop('disabled',false);
 
             //remove a opção de rodar
-            $('#dicebutton').prop('disabled',false);
+            $('#dicebutton').prop('disabled',true);
             
-      
+     /*  } else {
+            $('#point1').prop('disabled',true);
+            $('#point2').prop('disabled',true);
+            $('#point3').prop('disabled',true);
+            $('#point4').prop('disabled',true);
+            $('#point5').prop('disabled',true);
+            $('#point6').prop('disabled',true);
+            $('#point7').prop('disabled',true);
+            $('#point8').prop('disabled',true);
+            $('#point9').prop('disabled',true);
+
+            //remove a opção de rodar
+            $('#dicebutton').prop('disabled',true);       
+         }*/
+        
+        
            
     });
     
@@ -230,13 +246,8 @@ Layout::includeLayout('header'); ?>
             var playerpoints= $('#playerpoints').val();
 
 
-                        //remover o id para o botão do número não voltar a ficar enable
-                        $( ".price" ).click(function() {
-                        //alert(this.id);
-                        $(".price").removeAttr(this.id);
-                        });
+                     
 
-                        
             if(sumpoints >= number){
                 
                 //subtrair 
@@ -264,8 +275,8 @@ Layout::includeLayout('header'); ?>
                
         
                    
-//quanto menor melhor serve para saber quem fez menos pontos
-var winGame=45;
+                //quanto menor melhor serve para saber quem fez menos pontos
+                var winGame=45;
                 var sub = 0;
                 sub=winGame - $('#playerpoints').val();                    
                 $('#winGame').val(sub);
@@ -330,7 +341,13 @@ var winGame=45;
 
     
 
-        
+         //remover o id para o botão do número não voltar a ficar enable
+        $(document).ready(function() {
+        $(".price").click(function() {
+            $(this).removeAttr(this.id)
+            alert(this.id);
+        });
+        });
 
     
     
