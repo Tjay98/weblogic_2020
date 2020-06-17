@@ -12,33 +12,41 @@ Layout::includeLayout('header'); ?>
 
 </head>
 
-
-<div class="col-xs-12 col-sm-8 col-md-8 col-md-offset-2">
-<div class="game-container center-block col-8" >
-                <div class="row center-block ">
+<body>
+<div class="col-xs-10 col-xs-offset-2">
+<div class="game-container   center-block col-xs-10" >
+                <div class="row center-block  ">
                     <div class="col-xs-2">
                         <div class="score-current" id="r1">
                             <button class="price" id="point1" onclick="checkifpossible(1)" disabled>1</button>
-                       
+                        </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point2" onclick="checkifpossible(2)" disabled>2</button>
-                        
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point3" onclick="checkifpossible(3)" disabled>3</button>
-                        
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point4" onclick="checkifpossible(4)" disabled>4</button>
-                        
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point5" onclick="checkifpossible(5)" disabled>5</button>
-                        
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point6" onclick="checkifpossible(6)" disabled>6</button>
-                        
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point7" onclick="checkifpossible(7)" disabled>7</button>
-                       
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point8" onclick="checkifpossible(8)" disabled>8</button>
-                        
+                            </div>
+                        <div class="score-current" id="r1">
                             <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
                             
                         </div>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-8">
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="player-cell">
@@ -47,8 +55,8 @@ Layout::includeLayout('header'); ?>
                                         <div style="display: block;" class="caption post-content finalmsg" id="p1msgdiv">&nbsp;</div>
                                     </div>
                                 </div>
-                                <div class="round-cell">
-                                    <div class="price1" id="p1r"></div>
+                                <div class="round-cell ">
+                                    <div class="price2 " id="p1r"></div>
                                 </div>
                             </div>
                             <div class="col-xs-6">
@@ -59,7 +67,7 @@ Layout::includeLayout('header'); ?>
                                     </div>
                                 </div>
                                 <div class="round-cell">
-                                    <div class="price1" id="p2r"></div>
+                                    <div class="price2" id="p2r"></div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +107,7 @@ Layout::includeLayout('header'); ?>
                 <?php }?>
             </div>
                         </div>
-                    <div class="col-xs-1">
+                    <div class="col-xs-2">
                         <div class="score-current1" id="r11">
                             <div class="price1" id="p2c1">1</div>
                         </div>
@@ -130,13 +138,13 @@ Layout::includeLayout('header'); ?>
                     </div>
                 </div>
 
-                <div id="some-element" style="display: none;">
-                    <div class="stackbox-body">Stackbox example with options</div>
-                </div>
+        
                 
             </div>
             
 </div>
+                </div>
+                
 <script>
 
     //valores possiveis
@@ -180,10 +188,10 @@ Layout::includeLayout('header'); ?>
             $('#dice1').val(playerdice1);
             $('#dice2').val(playerdice2);
 
-            var html="<div class='col-md-6 col-lg-6 col-sm-12'>";
+            var html="<div class='col-md-6 col-lg-6 col-sm-12 text-center'>";
             html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice1+".png' >";
             html+="</div>";
-            html+="<div class='col-md-6 col-lg-6 col-sm-12'>";
+            html+="<div class='col-md-6 col-lg-6 col-sm-12 text-center'>";
             html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice2+".png' >";
             html+="</div>";
             $('#appenddice').html(html);
@@ -368,5 +376,6 @@ Layout::includeLayout('header'); ?>
     
     
 </script>
+
 
 

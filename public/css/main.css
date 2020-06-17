@@ -90,19 +90,20 @@ img.pull-left { margin-right: 10px; }
 .score-current { float: left; position: relative; background: #3498db; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 10px; }
 .score-current1 { float: left; position: relative; background: #B042C3; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 10px; }
 .score-cell { float: left; position: relative; background: #ff8c8c; text-align: center; border-radius: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 10px; background: url(/Resources/images/round.jpg); background-size: 100%; }
-.round-cell { float: left; position: relative; background: #58d2f3; text-align: center; border-radius: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 10px; background: url(/Resources/images/gallery_3.png); background-size: 100%; }
+.round-cell { display: inline-block; position: relative; background: #58d2f3; text-align: center; border-radius: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 40%; background-size: 100%; }
 .player-cell { margin-bottom: 40px; }
 .score-none { float: left; position: relative; background: none; text-align: center; border-radius: 5px; margin-right: 5px; margin-bottom: 5px; }
 .score-current > .price { background: white; color: rgba(0, 0, 0, 0.7); }
 .score-current1 > .price { background: white; color: rgba(0, 0, 0, 0.7); }
 .score-normal > .price { background: white; color: rgba(0, 0, 0, 0.7); }
 .score-cell > .price { background: none; color: white; font-size: 1.1em; /*line-height: 33px;*/ }
-.round-cell > .price1 { /*background-color: #3498db;*/ }
-.score-current > .price2 { background: none; color: rgba(0, 0, 0, 0.7); }
+.round-cell > .price2 { background-color: white; display:center;}
+.score-current1 > .price1 { background: white; color: rgba(0, 0, 0, 0.7); }
 .score-none > .price2 { background: none; color: rgba(0, 0, 0, 0.7); }
 .price { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
-.price1 { text-align: center; height: 50px; width: 50px; text-align: center; /*background-color: #e74c3c;*/ line-height: 40px; color: #fff; border-radius: 5px; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
-.price2 {text-align: center; height: 50px; width: 50px; text-align: center; background-color: none; line-height: 50px; color: #fff; border-radius: 5px; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.price1 { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.price2 { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.price3 {text-align: center; height: 50px; width: 50px; text-align: center; background-color: none; line-height: 50px; color: #fff; border-radius: 5px; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
 .round-score { height: 40px; width: 40px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 40px; color: #fff; font-size: 1.0em; font-weight: 100; margin: 10px 10px 10px 10px; }
 .dicecell { height: 70px; width: 70px; border-radius: 5px; margin-left: 10px; }
 .selectgame { border-radius: 5px; box-shadow: 0px 1px 0px #fff inset, 0px 1px 5px #fff; padding: 10px 10px 10px 10px; margin: 10px 10px 10px 10px; background: none repeat scroll 0% 0% #2388b5; color: white; font-size: 1.2em; }
