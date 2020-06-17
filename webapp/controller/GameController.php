@@ -9,24 +9,27 @@ class GameController extends BaseController
 {
 
     public function game(){
-        if(!empty($_SESSION['username'])){
+       /* if(!empty($_SESSION['username'])){
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 return View::make('game.game');
             }
             else{
-                Session::set('game','1');
+                Session::set('game','1');*/
                 return View::make('game.game');
 
-            }
+          /*  }
         }else{
             Redirect::toRoute('home/index');
-        }
+        }*/
     }
 
 
     public function randomdice(){
 
        //$_SESSION['pontos']=$_POST['playerpoints'];
+       /*foreach (){
+
+       }*/
        print_r($_POST);
 
     }
@@ -45,21 +48,6 @@ class GameController extends BaseController
     return $dado2;
     }
 
-//no games buscar a soma dos dados 1 e 2
-    public function rolldice(){
-    $total = new Games();
-    $total->SumDice($totalDice);
-    return $total;
- }
-
- //no games ir buscar o comparediceboxes
- public function play(){
-    $game= new Games();
-    $game->CompareDiceBoxes();
-
-
- }
- 
         
     
 

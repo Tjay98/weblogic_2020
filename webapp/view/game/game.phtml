@@ -5,6 +5,7 @@ use ArmoredCore\WebObjects\URL;
 
 
 
+
 Layout::includeLayout('header'); ?>
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -18,29 +19,21 @@ Layout::includeLayout('header'); ?>
                     <div class="col-xs-2">
                         <div class="score-current" id="r1">
                             <button class="price" id="point1" onclick="checkifpossible(1)" disabled>1</button>
-                        </div>
-                        <div class="score-current" id="r2">
+                       
                             <button class="price" id="point2" onclick="checkifpossible(2)" disabled>2</button>
-                        </div>
-                        <div class="score-current" id="r3">
+                        
                             <button class="price" id="point3" onclick="checkifpossible(3)" disabled>3</button>
-                        </div>
-                        <div class="score-current" id="r4">
+                        
                             <button class="price" id="point4" onclick="checkifpossible(4)" disabled>4</button>
-                        </div>
-                        <div class="score-current" id="r5">
+                        
                             <button class="price" id="point5" onclick="checkifpossible(5)" disabled>5</button>
-                        </div>
-                        <div class="score-current" id="r6">
+                        
                             <button class="price" id="point6" onclick="checkifpossible(6)" disabled>6</button>
-                        </div>
-                        <div class="score-current" id="r7">
+                        
                             <button class="price" id="point7" onclick="checkifpossible(7)" disabled>7</button>
-                        </div>
-                        <div class="score-current" id="r8">
+                       
                             <button class="price" id="point8" onclick="checkifpossible(8)" disabled>8</button>
-                        </div>
-                        <div class="score-current" id="r9">
+                        
                             <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
                             
                         </div>
@@ -78,7 +71,9 @@ Layout::includeLayout('header'); ?>
                                     <input type="text" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" >
                                     
                                     <input type="text" name="sumpoints" id="sumpoints" value="0" >
-                                    <input type="text" name="playerpoints" id="playerpoints" value="0" >
+                                    <input type="text" name="winGame" id="winGame" value="" >
+
+                                    <input type="text" name="playerpoints" id="playerpoints" value="" >
                                     <div id="appendselected"></div>
                                     
 
@@ -90,87 +85,7 @@ Layout::includeLayout('header'); ?>
                         <div class="row"></div>
                         <div class="row center-block">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <div class="dicecell" id="d1" method="get" action="  <?=Url::toRoute('game/dado1')?>  ">
-                                    <?php
-                                    if(!empty($dado1)){
-                                        if($dado1==1){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite1.png')?>" alt="Die 1">
-                                            <input type="hidden" id="dice1-check" value="">
-                                            <?php
-                                        }
-                                        if($dado1==2){
-                                            ?>
-                                            <img id="dice2" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite2.png')?>" alt="Die 2">
-                                            <input type="hidden" id="dice2-check" value="">
-                                            <?php
-                                        }
-                                        if($dado1==3){
-                                            ?>
-                                            <img id="dice3" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite3.png')?>" alt="Die 3">
-                                            <input type="hidden" id="dice3-check" value="">
-                                            <?php
-                                        }
-                                        if($dado1==4){
-                                            ?>
-                                            <img id="dice4" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite4.png')?>" alt="Die 4">
-                                            <input type="hidden" id="dice4-check" value="">
-                                            <?php
-                                        }
-                                        if($dado1==5){
-                                            ?>
-                                            <img id="dice5" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite5.png')?>" alt="Die 5">
-                                            <input type="hidden" id="dice5-check" value="">
-                                            <?php
-                                        }
-                                        if($dado1==6){
-                                            ?>
-                                            <img id="dice6" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite6.png')?>" alt="Die 6">
-                                            <input type="hidden" id="dice6-check" value="">
-                                            <?php
-                                        }
-                                    }
-                                    
-                                    ?>
-                                </div>
-                                <div class="dicecell" id="d2" method="get" action="  <?=Url::toRoute('game/dado2') ?> ">
-
-                                    <?php
-                                    if(!empty($dado2)){
-                                        if($dado2==1){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite1.png')?>" alt="Die 1">
-                                            <?php
-                                        }
-                                        if($dado2==2){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite2.png')?>" alt="Die 2">
-                                            <?php
-                                        }
-                                        if($dado2==3){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite3.png')?>" alt="Die 3">
-                                            <?php
-                                        }
-                                        if($dado2==4){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite4.png')?>" alt="Die 4">
-                                            <?php
-                                        }
-                                        if($dado2==5){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite5.png')?>" alt="Die 5">
-                                            <?php
-                                        }
-                                        if($dado2==6){
-                                            ?>
-                                            <img id="dice1" class="img-responsive die" src="<?= Asset::image('Dice/dieWhite6.png')?>" alt="Die 6">
-                                            <?php
-                                        }
-                                    }
-                                    
-                                    ?>
-                                </div>
+                               
                             </div>
                             <div class="row" id="appenddice"></div>
                         </div>
@@ -218,12 +133,7 @@ Layout::includeLayout('header'); ?>
                 <div id="some-element" style="display: none;">
                     <div class="stackbox-body">Stackbox example with options</div>
                 </div>
-                <!--
-                <div class="row center-block">
-                    <div class="col-xs-12">
-                        <a target="_blank" href="http://www.playonlinedicegames.com"><img src="http://localhost/weblogic_2020/public/img/verde-lodo.jpg" class="img-responsive center-block"></a>
-                    </div>
-                </div>-->
+                
             </div>
             
 </div>
@@ -279,10 +189,18 @@ Layout::includeLayout('header'); ?>
             html+="</div>";
             $('#appenddice').html(html);
 
+            /*if(soma dado != peça do jogador){
+                acabou o jogo  bloqueia e muda de jogador
+            } else {
+                roda o dado
+            }*/
+
 
             //calcula a soma de pontos
             var sumpoints= playerdice1+playerdice2;
             $('#sumpoints').val(sumpoints);
+
+            
 
 
             //abilita clicar nos botões
@@ -297,10 +215,10 @@ Layout::includeLayout('header'); ?>
             $('#point9').prop('disabled',false);
 
             //remove a opção de rodar
-            $('#dicebutton').prop('disabled',true);
+            $('#dicebutton').prop('disabled',false);
             
-		
-
+      
+           
     });
     
     
@@ -311,22 +229,52 @@ Layout::includeLayout('header'); ?>
             var sumpoints = $('#sumpoints').val();
             var playerpoints= $('#playerpoints').val();
 
+
+                        //remover o id para o botão do número não voltar a ficar enable
+                        $( ".price" ).click(function() {
+                        //alert(this.id);
+                        $(".price").removeAttr(this.id);
+                        });
+
+                        
             if(sumpoints >= number){
                 
                 //subtrair 
                 sumpoints = sumpoints-number;
                 alert(sumpoints);
 
+                
+                        
 
                 //adicionar os campos com os pontos escondigos
                 var html="<input type='text' value='"+number+"' name='numberselected["+count+"]' id='numberselected["+count+"]'>";
                 $('#appendselected').append(html);
                 $('#sumpoints').val(sumpoints);
+
+
+                //soma de pontos -FUNCIONA
+                $('#appendselected').each(function(){
+                    var newplayerpoints = 0;
+                    $(this).find('input').each(function(){
+                    newplayerpoints +=parseInt($(this).val());
+                    $('#playerpoints').val(newplayerpoints);
+                    });
+                });
+
+               
+        
+                   
+//quanto menor melhor serve para saber quem fez menos pontos
+var winGame=45;
+                var sub = 0;
+                sub=winGame - $('#playerpoints').val();                    
+                $('#winGame').val(sub);
+
+               
+           
                 
-                //soma de pontos -erro corrigir
-                newplayerpoints=playerpoints+number;
-                $('#playerpoints').val(newplayerpoints);
-            
+               
+
                 if(sumpoints==0){
 
 
@@ -340,10 +288,12 @@ Layout::includeLayout('header'); ?>
                     $('#point8').prop('disabled',true);
                     $('#point9').prop('disabled',true);
 
+                    
                     //remove a opção de rodar
                     $('#dicebutton').prop('disabled',false);
 
-
+                    
+                  
                     //manda as variaveis para o controlador
                     var formdata = $('#dice_roll_form').serialize();
                         $.ajax({
@@ -353,13 +303,14 @@ Layout::includeLayout('header'); ?>
                         data: formdata ,
                         success: function(data){  
 
-                        alert(data);
+                            alert(data);
 
                         
                             }
                         });  
                         return false;
-                }
+                    }
+                
                 else if(sumpoints<0){
                     alert('ERRO NÚMERO MAIOR');
                 }
@@ -374,7 +325,15 @@ Layout::includeLayout('header'); ?>
 
         }
 
+
     }
+
+    
+
+        
+
+    
+    
 </script>
 
 
