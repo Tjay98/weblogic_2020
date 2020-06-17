@@ -101,31 +101,31 @@ Layout::includeLayout('header'); ?>
                         </div>
                     <div class="col-xs-1">
                         <div class="score-current1" id="r11">
-                            <div class="price" id="p2c1">1</div>
+                            <div class="price1" id="p2c1">1</div>
                         </div>
                         <div class="score-current1" id="r12">
-                            <div class="price" id="p2c2">2</div>
+                            <div class="price1" id="p2c2">2</div>
                         </div>
                         <div class="score-current1" id="r13">
-                            <div class="price" id="p2c3">3</div>
+                            <div class="price1" id="p2c3">3</div>
                         </div>
                         <div class="score-current1" id="r14">
-                            <div class="price" id="p2c4">4</div>
+                            <div class="price1" id="p2c4">4</div>
                         </div>
                         <div class="score-current1" id="r15">
-                            <div class="price" id="p2c5">5</div>
+                            <div class="price1" id="p2c5">5</div>
                         </div>
                         <div class="score-current1" id="r16">
-                            <div class="price" id="p2c6">6</div>
+                            <div class="price1" id="p2c6">6</div>
                         </div>
                         <div class="score-current1" id="r17">
-                            <div class="price" id="p2c7">7</div>
+                            <div class="price1" id="p2c7">7</div>
                         </div>
                         <div class="score-current1" id="r18">
-                            <div class="price" id="p2c8">8</div>
+                            <div class="price1" id="p2c8">8</div>
                         </div>
                         <div class="score-current1" id="r19">
-                            <div class="price" id="p2c9">9</div>
+                            <div class="price1" id="p2c9">9</div>
                         </div>
                     </div>
                 </div>
@@ -173,8 +173,6 @@ Layout::includeLayout('header'); ?>
         //prevenir que dê submit. caso haja erros ele não previne e dá bug. convem ter em atençao
         var playerdice1=$('#dice1').val();
         var playerdice2=$('#dice2').val();
-
-
 
 			var playerdice1=Math.floor(Math.random() * 6) + 1  
             var playerdice2=Math.floor(Math.random() * 6) + 1  
@@ -229,100 +227,112 @@ Layout::includeLayout('header'); ?>
             var sumpoints = $('#sumpoints').val();
             var playerpoints= $('#playerpoints').val();
 
-
-                        //remover o id para o botão do número não voltar a ficar enable
-                        $( ".price" ).click(function() {
-                        //alert(this.id);
-                        $(".price").removeAttr(this.id);
-                        });
-
-                        
-            if(sumpoints >= number){
-                
-                //subtrair 
-                sumpoints = sumpoints-number;
-                alert(sumpoints);
-
-                
-                        
-
-                //adicionar os campos com os pontos escondigos
-                var html="<input type='text' value='"+number+"' name='numberselected["+count+"]' id='numberselected["+count+"]'>";
-                $('#appendselected').append(html);
-                $('#sumpoints').val(sumpoints);
-
-
-                //soma de pontos -FUNCIONA
-                $('#appendselected').each(function(){
-                    var newplayerpoints = 0;
-                    $(this).find('input').each(function(){
-                    newplayerpoints +=parseInt($(this).val());
-                    $('#playerpoints').val(newplayerpoints);
-                    });
-                });
-
-               
-        
-                   
-//quanto menor melhor serve para saber quem fez menos pontos
-var winGame=45;
-                var sub = 0;
-                sub=winGame - $('#playerpoints').val();                    
-                $('#winGame').val(sub);
-
-               
-           
-                
-               
-
-                if(sumpoints==0){
-
-
-                    $('#point1').prop('disabled',true);
-                    $('#point2').prop('disabled',true);
-                    $('#point3').prop('disabled',true);
-                    $('#point4').prop('disabled',true);
-                    $('#point5').prop('disabled',true);
-                    $('#point6').prop('disabled',true);
-                    $('#point7').prop('disabled',true);
-                    $('#point8').prop('disabled',true);
-                    $('#point9').prop('disabled',true);
-
-                    
-                    //remove a opção de rodar
-                    $('#dicebutton').prop('disabled',false);
-
-                    
-                  
-                    //manda as variaveis para o controlador
-                    var formdata = $('#dice_roll_form').serialize();
-                        $.ajax({
-                        type: 'POST',
-                        url: '<?=  URL::toRoute('game/randomdice') ?>', 
-                        cache: false,    
-                        data: formdata ,
-                        success: function(data){  
-
-                            alert(data);
-
-                        
-                            }
-                        });  
-                        return false;
-                    }
-                
-                else if(sumpoints<0){
-                    alert('ERRO NÚMERO MAIOR');
-                }
+            if($('#numberfinish'+number).val()){
+                alert('Este número já foi adicionado anteriormente');
 
             }
-            else{
-                alert('Não é possível selecionar, número superior à soma de dados');
-            } 
+            else {
+                if($('#numberselected'+number).val()){
+
+                    sumpoints+=number;
+
+                }else{
+                    if(sumpoints >= number){
+                
+                        //subtrair 
+                        sumpoints = sumpoints-number;
+                        alert(sumpoints);
+                        
+                        
+
+
+                        //adicionar os campos com os pontos escondidos
+                        var html="<input type='text' value='"+number+"' class='pontos_selecionados' name='numberselected["+count+"]' id='numberselected"+number+"'readonly>";
+                        $('#point'+number).css({"background-color":"orange"});
+
+                        $('#appendselected').append(html);
+                        $('#sumpoints').val(sumpoints);
+
+
+                        //soma de pontos -FUNCIONA
+                        $('#appendselected').each(function(){
+                            var newplayerpoints = 0;
+                            $(this).find('input').each(function(){
+                            newplayerpoints +=parseInt($(this).val());
+                            $('#playerpoints').val(newplayerpoints);
+                            });
+                        });
+
+                    
+                
+                        
+                        //quanto menor melhor serve para saber quem fez menos pontos
+                        var winGame=45;
+                        var sub = 0;
+                        sub=winGame - $('#playerpoints').val();                    
+                        $('#winGame').val(sub);
+
+                    
+                
+                        
+                    
+
+                        if(sumpoints==0){
+                            $('.pontos_selecionados').each(function(){
+                                var valor=$(this).val();
+                                $(this).removeClass('pontos_selecionados');
+                                $(this).attr('id','numberfinish'+valor);
+                                $('#point'+valor).css({"background-color":"red"});
+                            });
+
+                            $('#point1').prop('disabled',true);
+                            $('#point2').prop('disabled',true);
+                            $('#point3').prop('disabled',true);
+                            $('#point4').prop('disabled',true);
+                            $('#point5').prop('disabled',true);
+                            $('#point6').prop('disabled',true);
+                            $('#point7').prop('disabled',true);
+                            $('#point8').prop('disabled',true);
+                            $('#point9').prop('disabled',true);
+
+                            
+                            //remove a opção de rodar
+                            $('#dicebutton').prop('disabled',false);
+
+                            
+                        
+                            //manda as variaveis para o controlador
+                            var formdata = $('#dice_roll_form').serialize();
+                                $.ajax({
+                                type: 'POST',
+                                url: '<?=  URL::toRoute('game/randomdice') ?>', 
+                                cache: false,    
+                                data: formdata ,
+                                success: function(data){  
+
+                                    alert(data);
+
+                                
+                                    }
+                                });  
+                                return false;
+                            }
+                        
+                        else if(sumpoints<0){
+                            alert('ERRO NÚMERO MAIOR');
+                        }
+
+                    }
+                    else{
+                        alert('Não é possível selecionar, número superior à soma de dados');
+                    } 
+                }
+            }             
+
             
         }
         else{
-
+            alert('Valor inválido');
         }
 
 
