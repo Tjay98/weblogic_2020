@@ -45,6 +45,8 @@ class BackofficeController extends BaseController implements ResourceControllerI
         // your form name fields must match the ones of the table fields
         if(!empty($_SESSION['username'])&&($_SESSION['role']==2)){
             $user = new Users(Post::getAll());
+            print_r($user);
+            die();
 
             if($user->is_valid()){
                 $user->save();

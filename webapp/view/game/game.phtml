@@ -13,6 +13,10 @@ Layout::includeLayout('header'); ?>
 <?php $game = Data::get('games')?>
 <?php ErrMgr::attach($game) ?>
 
+
+
+
+
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
@@ -24,7 +28,7 @@ Layout::includeLayout('header'); ?>
         <div class="row center-block  ">
             <div class="col-xs-2">
                 <div class="score-current" id="r1">
-                    <button class="price" id="point1" onclick="checkifpossible(1)" disabled>1</button>
+                    <button class="price" id="point1" onclick="checkifpossible(1) " disabled>1</button>
                 </div>
                 <div class="score-current" id="r1">
                     <button class="price" id="point2" onclick="checkifpossible(2)" disabled>2</button>
@@ -50,7 +54,7 @@ Layout::includeLayout('header'); ?>
                 <div class="score-current" id="r1">
                     <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
                 </div>
-                <button class="btn btn-success center-block" id="gameover" disabled>GAME OVER</button>
+                <button class="btn btn-success center-block" id="gameover" disabled>Terminar o jogo</button>
             </div>
             <div class="col-xs-8">
                 <div class="row">
@@ -62,7 +66,7 @@ Layout::includeLayout('header'); ?>
                             </div>
                         </div>
                         <div class="round-cell ">
-                            <input type="text" style="width:40px;text-align:center" name="winGame" id="winGame" value="" readonly>
+                            <input type="text" style="width:40px;text-align:center" name="playerpoints" id="playerpoints" value="<?php if(!empty($_SESSION['game_points'])){ echo $_SESSION['game_points'];} else{echo "0";}?>" readonly>
                         </div>
                     </div>
                     <div class="col-xs-6">
@@ -72,23 +76,54 @@ Layout::includeLayout('header'); ?>
                                 <div style="display: block;" class="caption post-content finalmsg" id="p2msgdiv">&nbsp;</div>
                             </div>
                         </div>
-                        <div class="round-cell">
+<!--                         <div class="round-cell">
                             <input type="text" style="width:40px;text-align:center" name="pontosfinaisbot" id="pontosfinaisbot" value="" readonly>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <form id="dice_roll_form" method="post" action="<?=Url::toRoute('game/gameIndex')?>">
+                    <div class="col-xs-12"><?php if(!empty($_SESSION['game'])){?>
+                        <form id="dice_roll_form" method="post" >
                             <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
                             <input type="hidden" name="dice1" id="dice1" value="<?php if(!empty($dice1)){echo $dice1;}?>" readonly>
                             <input type="hidden" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" readonly>
                             <label for="sumpoints" style="color:white">Pontos ainda possíveis para jogar</label>
                             <input type="text" style="width:40px;text-align:center" name="sumpoints" id="sumpoints" value="0" readonly>
-                            <input type="hidden" style="width:40px;text-align:center" name="playerpoints" id="playerpoints" value="0" readonly>
+                            <input type="hidden" style="width:40px;text-align:center" >
 
-                            <div id="appendselected"></div>
-                        </form>                                
+                            <div id="appendselected">
+                            <?php if(!empty($_SESSION['point_1'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[1]" id="numberfinish1" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_2'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[2]" id="numberfinish2" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_3'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[3]" id="numberfinish3" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_4'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[4]" id="numberfinish4" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_5'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[5]" id="numberfinish5" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_6'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[6]" id="numberfinish6" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_7'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[7]" id="numberfinish7" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_8'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[8]" id="numberfinish8" readonly="">';
+                                }
+                                if(!empty($_SESSION['point_9'])){
+                                    echo '<input type="hidden" value="9" class="" name="numberselected[9]" id="numberfinish9" readonly="">';
+                                }
+                                ?>
+                            
+                            </div>
+                        </form>
+                            <?php }?>                                
                     </div>
                 </div>
                 <div class="row"></div>
@@ -100,7 +135,7 @@ Layout::includeLayout('header'); ?>
                     <div id="novoJogo" class="col-xs-12">
                         <!-- verificar se têm uma sessão de jogo-->
                         <?php if(empty($_SESSION['game'])){?>
-                            <form method="post" action="<?= Url::toRoute('game/game') ?>">
+                            <form method="post" action="<?= Url::toRoute('game/gamestart') ?>">
                                 <button class="btn btn-success center-block">Novo Jogo</button>
                             </form>
                         <?php }?>
@@ -141,8 +176,48 @@ Layout::includeLayout('header'); ?>
 </div>
                 
 <script>
-
-    //valores possiveis
+$(document).ready(function(){
+    
+    <?php 
+    if(!empty($_SESSION['point_1'])){?>
+        $('#point1').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_2'])){?>
+        $('#point2').css({'background-color':'green'});´
+        $('#gameover').prop('disabled',false);
+   <?php }
+    if(!empty($_SESSION['point_3'])){?>
+        $('#point3').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_4'])){?>
+        $('#point4').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_5'])){?>
+        $('#point5').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_6'])){?>
+        $('#point6').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_7'])){?>
+        $('#point7').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_8'])){?>
+        $('#point8').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    if(!empty($_SESSION['point_9'])){?>
+        $('#point9').css({'background-color':'green'});
+        $('#gameover').prop('disabled',false);
+    <?php }
+    ?>
+});
+/*     //valores possiveis
     var playerpoint1=1;
     var playerpoint2=2;
     var playerpoint3=3;
@@ -162,7 +237,7 @@ Layout::includeLayout('header'); ?>
     var enemypoint6=6;
     var enemypoint7=7;
     var enemypoint8=8;
-    var enemypoint9=9;
+    var enemypoint9=9; */
 
     var playertotal=0;
     var enemytotal=0;
@@ -198,22 +273,6 @@ Layout::includeLayout('header'); ?>
         var sumpoints= playerdice1+playerdice2;
         $('#sumpoints').val(sumpoints);
             
-/*      $('.price').each(function(){
-        var color=$(this).css('background-color');
-            if(color=="rgb(255, 255, 255)" || color=="white" || color=="fff"){
-                var id=$(this).attr('id');
-                var string_value=id.replace('point','');
-                if(sumpoints <= 0){
-                
-                }else{
-                if(sumpoints > string_value){
-            
-                }
-            }
-        }
-        }); */
- //quanto menor melhor serve para saber quem fez menos pontos
- 
 
             
 
@@ -231,7 +290,7 @@ Layout::includeLayout('header'); ?>
 
         //remove a opção de rodar
         $('#dicebutton').prop('disabled',true);
-        $('#gameover').prop('disabled',false);
+        
 
       
            
@@ -255,11 +314,11 @@ Layout::includeLayout('header'); ?>
                     if(sumpoints >= number){
                     //subtrair
                     sumpoints = sumpoints-number;
-                    alert(sumpoints);
+                    //alert(sumpoints);
                         
                         
                     //adicionar os campos com os pontos escondidos
-                    var html="<input type='hidden' value='"+number+"' class='pontos_selecionados' name='numberselected["+count+"]' id='numberselected"+number+"'readonly>";
+                    var html="<input type='hidden' value='"+number+"' class='pontos_selecionados' name='numberselected["+number+"]' id='numberselected"+number+"'readonly>";
                     $('#point'+number).css({"background-color":"orange"});
                     $('#appendselected').append(html);
                     $('#sumpoints').val(sumpoints);
@@ -298,13 +357,14 @@ Layout::includeLayout('header'); ?>
                         $('#point9').prop('disabled',true);
                         //remove a opção de rodar
                         $('#dicebutton').prop('disabled',false);
-                        $('#gameover').prop('disabled',false);
 
+                        $('#gameover').prop('disabled',false);
                         //manda as variaveis para o controlador
                         var formdata = $('#dice_roll_form').serialize();
+                        
                             $.ajax({
                             type: 'POST',
-                            url: '<?=  URL::toRoute('game/randomdice') ?>', 
+                            url: '<?=  URL::toRoute('game/savepoints') ?>', 
                             cache: false,    
                             data: formdata ,
                             success: function(data){  
@@ -328,7 +388,8 @@ Layout::includeLayout('header'); ?>
     }
 
     $( "#gameover" ).click(function(e) {
-		e.preventDefault();
+        e.preventDefault();
+        
 
         $('#point1').prop('disabled',true);
         $('#point2').prop('disabled',true);
@@ -343,7 +404,19 @@ Layout::includeLayout('header'); ?>
                             
         //remove a opção de rodar
         $('#dicebutton').prop('disabled',true);
-
+        $.ajax({
+            type: 'POST',
+            url: '<?=  URL::toRoute('game/endgame') ?>', 
+            cache: false,    
+            data: {finish:1},
+            success: function(data){  
+                if(data=="game_end"){
+                    alert('Jogo terminado');
+                    location.reload();
+                }
+            }
+        });  
+        return false;
     
 
        

@@ -34,8 +34,9 @@ Router::get('game/scoreboard','GameController/scoreboard');
 Router::resource('game', 'GameController');
 
 Router::get('game/game','GameController/game');
-Router::post('game/game','GameController/game');
-Router::post('game/randomdice','GameController/randomdice');
+Router::post('game/gamestart','GameController/gamestart');
+Router::get('game/savepoints','GameController/savepoints');
+Router::post('game/endgame','GameController/endgame');
 
 Router::get('game/dice1', 'GameController/dice1');
 Router::get('game/dice2', 'GameController/dice2');
