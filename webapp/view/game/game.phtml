@@ -62,7 +62,7 @@ Layout::includeLayout('header'); ?>
                             </div>
                         </div>
                         <div class="round-cell ">
-                            <input type="text" style="width:40px;text-align:center" name="pontosfinais" id="winGame" value="<?php if(!empty($game->player_points))?>" readonly>
+                            <input type="text" style="width:40px;text-align:center" name="winGame" id="winGame" value="" readonly>
                         </div>
                     </div>
                     <div class="col-xs-6">
@@ -73,7 +73,7 @@ Layout::includeLayout('header'); ?>
                             </div>
                         </div>
                         <div class="round-cell">
-                            <input type="text" style="width:40px;text-align:center" name="pontosfinaisbot" id="pontosfinaisbot" value="<?php if(!empty($game->enemy_points))?>" readonly>
+                            <input type="text" style="width:40px;text-align:center" name="pontosfinaisbot" id="pontosfinaisbot" value="" readonly>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,8 @@ Layout::includeLayout('header'); ?>
                             <input type="hidden" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" readonly>
                             <label for="sumpoints" style="color:white">Pontos ainda possíveis para jogar</label>
                             <input type="text" style="width:40px;text-align:center" name="sumpoints" id="sumpoints" value="0" readonly>
-                            <!--<input type="hidden" name="winGame" id="winGame" value="" readonly>-->
+                            <input type="hidden" style="width:40px;text-align:center" name="playerpoints" id="playerpoints" value="0" readonly>
+
                             <div id="appendselected"></div>
                         </form>                                
                     </div>
@@ -190,11 +191,7 @@ Layout::includeLayout('header'); ?>
         html+="</div>";
         $('#appenddice').html(html);
 
-        /*if(soma dado != peça do jogador){
-            acabou o jogo  bloqueia e muda de jogador
-        } else {
-            roda o dado
-        }*/
+       
 
 
         //calcula a soma de pontos
@@ -215,6 +212,8 @@ Layout::includeLayout('header'); ?>
             }
         }
         }); */
+ //quanto menor melhor serve para saber quem fez menos pontos
+ 
 
             
 
@@ -269,7 +268,7 @@ Layout::includeLayout('header'); ?>
                     $('#appendselected').each(function(){
                         var newplayerpoints = 0;
                         $(this).find('input').each(function(){
-                        newplayerpoints +=parseInt($(this).val());
+                        newplayerpoints += parseInt($(this).val());
                         $('#playerpoints').val(newplayerpoints);
                         });
                     });
@@ -345,32 +344,11 @@ Layout::includeLayout('header'); ?>
         //remove a opção de rodar
         $('#dicebutton').prop('disabled',true);
 
-        
-       /* $('#numberfinish').each(function(){
-            var total=0;
-            total+=parseInt($('#numberfinish').val());
-            $('#pontosfinais').val(total);
+    
 
-        });
-        */
+       
 
-        //quanto menor melhor serve para saber quem fez menos pontos
-        var winGame=45;
-        var sub = 0;
-        sub=winGame - $('#playerpoints').val();                    
-        $('#winGame').val(sub);
-
-
-        var formdata = $('#winGame').val();
-        $.ajax({
-        type: 'POST',
-        url: '<?=  URL::toRoute('game/gameoverval') ?>', 
-        cache: false,    
-        data: formdata ,
-        success: function(data){  
-            alert(data);
-        }
-        });  
+      
     });
 
         
