@@ -32,11 +32,11 @@ DROP TABLE IF EXISTS `games`;
 CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `player_points` int(11) NOT NULL,
-  `enemy_points` int(11) NOT NULL,
+  `player_points` int(11) ,
+  `enemy_points` int(11) ,
   `status` int(11) NOT NULL COMMENT '1-iniciado 2-acabado',
   `started_date` datetime NOT NULL,
-  `finish_date` datetime NOT NULL,
+  `finish_date` datetime ,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

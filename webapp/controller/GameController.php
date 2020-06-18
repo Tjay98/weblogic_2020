@@ -7,17 +7,23 @@ use ArmoredCore\WebObjects\View;
 
 class GameController extends BaseController
 {
+     
 
     public function game(){
         if(!empty($_SESSION['username'])){
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                
-
                 return View::make('game.game');
+                
+                
+                $game = Data::get('games');
+                $game->id_user ==['username'];
+                $game->started_date == date();
+                $game->status==1;   
+
                 
             }
             else{
-                Session::set('game','1');
+                Session::set('game','1');   
                 return View::make('game.game');
 
             }
@@ -28,29 +34,22 @@ class GameController extends BaseController
 
     //função de inicio do jogo para enviar para o mysql
     public function gameIndex(){
-        $game[]=[
-            'id_user'=>$_SESSION['username'],
-            'player_points'=>0,
-            'enemy_points'=>0,
-            'status'=>1,
-            'started_date'=>date_time_set(),
-            'finish_date'=>null(),
-        ];
-        View::make('game.gameindex', ['game' => $game]);
+        if(!empty($_SESSION['username'])&&($_SESSION['game']==1)){
 
+        $game = new Game(Post::getAll());
+
+       
+        Redirect::flashToRoute('game/game', ['game' => $game]);
+
+        }else{
+            Redirect::toRoute('home/index');
+        }
     }
+
 
      //função de fim do jogo para enviar para o mysql
      public function gameOver(){
-        $game[]=[
-            'id_user'=>$_SESSION['username'],
-            'player_points'=>['winGame'],
-            'enemy_points'=>0,
-            'status'=>2,
-            'started_date'=>null(),
-            'finish_date'=>date_time_set(),
-        ];
-        View::make('game.gameover', ['game' => $game]);
+       
 
     }
 

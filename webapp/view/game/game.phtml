@@ -20,149 +20,124 @@ Layout::includeLayout('header'); ?>
 
 <body>
 <div class="col-xs-10 col-xs-offset-2">
-<div class="game-container   center-block col-xs-10" >
-                <div class="row center-block  ">
-                    <div class="col-xs-2">
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point1" onclick="checkifpossible(1)" disabled>1</button>
-                        </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point2" onclick="checkifpossible(2)" disabled>2</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point3" onclick="checkifpossible(3)" disabled>3</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point4" onclick="checkifpossible(4)" disabled>4</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point5" onclick="checkifpossible(5)" disabled>5</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point6" onclick="checkifpossible(6)" disabled>6</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point7" onclick="checkifpossible(7)" disabled>7</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point8" onclick="checkifpossible(8)" disabled>8</button>
-                            </div>
-                        <div class="score-current" id="r1">
-                            <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
-                            
-                        </div>
-                        <button class="btn btn-success center-block" id="gameover" disabled>GAME OVER</button>
-
-                    </div>
-                    <div class="col-xs-8">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="player-cell">
-                                    <img src="<?= Asset::image('jogador.png')?>" id="p1i" alt="Player" class="center-block">
-                                    <div class="wrapper">
-                                        <div style="display: block;" class="caption post-content finalmsg" id="p1msgdiv">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <div class="round-cell ">
-                                <input type="text" style="width:40px;text-align:center" name="pontosfinais" id="winGame" value="<?=$game->player_points?>" readonly>
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="player-cell">
-                                    <img src="<?= Asset::image('pc.png')?>" id="p2i" alt="Computer" class="center-block">
-                                    <div class="wrapper">
-                                        <div style="display: block;" class="caption post-content finalmsg" id="p2msgdiv">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <div class="round-cell">
-                                <input type="text" style="width:40px;text-align:center" name="pontosfinaisbot" id="pontosfinaisbot" value="<?=$game->enemy_points?>" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <form id="dice_roll_form" method="post" >
-                                    <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
-                                    <input type="hidden" name="dice1" id="dice1" value="<?php if(!empty($dice1)){echo $dice1;}?>" readonly>
-                                    <input type="hidden" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" readonly>
-                                    <label for="sumpoints" style="color:white">Pontos ainda possíveis para jogar</label>
-                                    <input type="text" style="width:40px;text-align:center" name="sumpoints" id="sumpoints" value="0" readonly>
-                                    <!--<input type="hidden" name="winGame" id="winGame" value="" readonly>-->
-
-                                    <input type="hidden" name="status" id="status" value="<?php $game->status==1?>" readonly>
-
-                                    <input type="hidden" name="playerpoints" id="playerpoints" value="" readonly>
-
-                                    <input type="hidden" name="id_user" id="id_user" value="<?php $game->id_user ==['username']?>" readonly>
-
-                                    <input type="hidden" name="started_date" id="started_date" value="<?php $game->started_date == date('Y-m-d ')?>" readonly>
-
-                                    <div id="appendselected"></div>
-                                    
-                                
-                                    <?= ErrMgr::bind('id_user') ?>
-                                    <?= ErrMgr::bind('started_date') ?>
-                                    <?= ErrMgr::bind('winGame') ?>
-                                    <?= ErrMgr::bind('status') ?>
-                                </form>                                
-                            </div>
-                            
-                        </div>
-                      
-                        <div class="row"></div>
-                        <div class="row center-block">
-                            <div class="col-xs-6 col-xs-offset-3">
-                               
-                            </div>
-                            <div class="row" id="appenddice"></div>
-                        </div>
-                        <div id="novoJogo" class="col-xs-12">
-
-                <!-- verificar se têm uma sessão de jogo-->
-                <?php if(empty($_SESSION['game'])){?>
-                    <form method="post" action="<?= Url::toRoute('game/game') ?>">
-                        <button class="btn btn-success center-block">Novo Jogo</button>
-                    </form>
-                <?php }?>
+    <div class="game-container   center-block col-xs-10" >
+        <div class="row center-block  ">
+            <div class="col-xs-2">
+                <div class="score-current" id="r1">
+                    <button class="price" id="point1" onclick="checkifpossible(1)" disabled>1</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point2" onclick="checkifpossible(2)" disabled>2</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point3" onclick="checkifpossible(3)" disabled>3</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point4" onclick="checkifpossible(4)" disabled>4</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point5" onclick="checkifpossible(5)" disabled>5</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point6" onclick="checkifpossible(6)" disabled>6</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point7" onclick="checkifpossible(7)" disabled>7</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point8" onclick="checkifpossible(8)" disabled>8</button>
+                </div>
+                <div class="score-current" id="r1">
+                    <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
+                </div>
+                <button class="btn btn-success center-block" id="gameover" disabled>GAME OVER</button>
             </div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="player-cell">
+                            <img src="<?= Asset::image('jogador.png')?>" id="p1i" alt="Player" class="center-block">
+                            <div class="wrapper">
+                                <div style="display: block;" class="caption post-content finalmsg" id="p1msgdiv">&nbsp;</div>
+                            </div>
                         </div>
-                    <div class="col-xs-2">
-                        <div class="score-current1" id="r11">
-                            <div class="price1" id="p2c1">1</div>
+                        <div class="round-cell ">
+                            <input type="text" style="width:40px;text-align:center" name="pontosfinais" id="winGame" value="<?php if(!empty($game->player_points))?>" readonly>
                         </div>
-                        <div class="score-current1" id="r12">
-                            <div class="price1" id="p2c2">2</div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="player-cell">
+                            <img src="<?= Asset::image('pc.png')?>" id="p2i" alt="Computer" class="center-block">
+                            <div class="wrapper">
+                                <div style="display: block;" class="caption post-content finalmsg" id="p2msgdiv">&nbsp;</div>
+                            </div>
                         </div>
-                        <div class="score-current1" id="r13">
-                            <div class="price1" id="p2c3">3</div>
-                        </div>
-                        <div class="score-current1" id="r14">
-                            <div class="price1" id="p2c4">4</div>
-                        </div>
-                        <div class="score-current1" id="r15">
-                            <div class="price1" id="p2c5">5</div>
-                        </div>
-                        <div class="score-current1" id="r16">
-                            <div class="price1" id="p2c6">6</div>
-                        </div>
-                        <div class="score-current1" id="r17">
-                            <div class="price1" id="p2c7">7</div>
-                        </div>
-                        <div class="score-current1" id="r18">
-                            <div class="price1" id="p2c8">8</div>
-                        </div>
-                        <div class="score-current1" id="r19">
-                            <div class="price1" id="p2c9">9</div>
+                        <div class="round-cell">
+                            <input type="text" style="width:40px;text-align:center" name="pontosfinaisbot" id="pontosfinaisbot" value="<?php if(!empty($game->enemy_points))?>" readonly>
                         </div>
                     </div>
                 </div>
-
-        
-                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form id="dice_roll_form" method="post" action="<?=Url::toRoute('game/gameIndex')?>">
+                            <button id="dicebutton"   class="btn btn-md btn-primary center-block" >Roll Dice </button>
+                            <input type="hidden" name="dice1" id="dice1" value="<?php if(!empty($dice1)){echo $dice1;}?>" readonly>
+                            <input type="hidden" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" readonly>
+                            <label for="sumpoints" style="color:white">Pontos ainda possíveis para jogar</label>
+                            <input type="text" style="width:40px;text-align:center" name="sumpoints" id="sumpoints" value="0" readonly>
+                            <!--<input type="hidden" name="winGame" id="winGame" value="" readonly>-->
+                            <div id="appendselected"></div>
+                        </form>                                
+                    </div>
+                </div>
+                <div class="row"></div>
+                    <div class="row center-block">
+                        <div class="col-xs-6 col-xs-offset-3">
+                        </div>
+                        <div class="row" id="appenddice"></div>
+                    </div>
+                    <div id="novoJogo" class="col-xs-12">
+                        <!-- verificar se têm uma sessão de jogo-->
+                        <?php if(empty($_SESSION['game'])){?>
+                            <form method="post" action="<?= Url::toRoute('game/game') ?>">
+                                <button class="btn btn-success center-block">Novo Jogo</button>
+                            </form>
+                        <?php }?>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="score-current1" id="r11">
+                        <div class="price1" id="p2c1">1</div>
+                    </div>
+                    <div class="score-current1" id="r12">
+                        <div class="price1" id="p2c2">2</div>
+                    </div>
+                    <div class="score-current1" id="r13">
+                        <div class="price1" id="p2c3">3</div>
+                    </div>
+                    <div class="score-current1" id="r14">
+                        <div class="price1" id="p2c4">4</div>
+                    </div>
+                    <div class="score-current1" id="r15">
+                        <div class="price1" id="p2c5">5</div>
+                    </div>
+                    <div class="score-current1" id="r16">
+                        <div class="price1" id="p2c6">6</div>
+                    </div>
+                    <div class="score-current1" id="r17">
+                        <div class="price1" id="p2c7">7</div>
+                    </div>
+                    <div class="score-current1" id="r18">
+                        <div class="price1" id="p2c8">8</div>
+                    </div>
+                    <div class="score-current1" id="r19">
+                        <div class="price1" id="p2c9">9</div>
+                    </div>
+                </div>
             </div>
-            
+        </div>          
+    </div>
 </div>
-                </div>
                 
 <script>
 
@@ -202,67 +177,62 @@ Layout::includeLayout('header'); ?>
         var playerdice1=$('#dice1').val();
         var playerdice2=$('#dice2').val();
 
-			var playerdice1=Math.floor(Math.random() * 6) + 1  
-            var playerdice2=Math.floor(Math.random() * 6) + 1  
-            $('#dice1').val(playerdice1);
-            $('#dice2').val(playerdice2);
+		var playerdice1=Math.floor(Math.random() * 6) + 1  
+        var playerdice2=Math.floor(Math.random() * 6) + 1  
+        $('#dice1').val(playerdice1);
+        $('#dice2').val(playerdice2);
 
-            var html="<div class='col-md-6 col-lg-6 col-sm-12 text-center'>";
-            html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice1+".png' >";
-            html+="</div>";
-            html+="<div class='col-md-6 col-lg-6 col-sm-12 text-center'>";
-            html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice2+".png' >";
-            html+="</div>";
-            $('#appenddice').html(html);
+        var html="<div class='col-md-6 col-lg-6 col-sm-12 text-center'>";
+        html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice1+".png' >";
+        html+="</div>";
+        html+="<div class='col-md-6 col-lg-6 col-sm-12 text-center'>";
+        html+="<img  src='http://localhost/weblogic_2020/public/img/diceplayer"+playerdice2+".png' >";
+        html+="</div>";
+        $('#appenddice').html(html);
 
-            /*if(soma dado != peça do jogador){
-                acabou o jogo  bloqueia e muda de jogador
-            } else {
-                roda o dado
-            }*/
+        /*if(soma dado != peça do jogador){
+            acabou o jogo  bloqueia e muda de jogador
+        } else {
+            roda o dado
+        }*/
 
 
-            //calcula a soma de pontos
-            var sumpoints= playerdice1+playerdice2;
-            $('#sumpoints').val(sumpoints);
+        //calcula a soma de pontos
+        var sumpoints= playerdice1+playerdice2;
+        $('#sumpoints').val(sumpoints);
             
-/*             $('.price').each(function(){
-
-                    var color=$(this).css('background-color');
-                    if(color=="rgb(255, 255, 255)" || color=="white" || color=="fff"){
-                        var id=$(this).attr('id');
-                        var string_value=id.replace('point','');
-                        if(sumpoints <= 0){
-                            
-                        }else{
-                            if(sumpoints > string_value){
-                                
-                                        
-                            }
-                        }
-
-                    }
+/*      $('.price').each(function(){
+        var color=$(this).css('background-color');
+            if(color=="rgb(255, 255, 255)" || color=="white" || color=="fff"){
+                var id=$(this).attr('id');
+                var string_value=id.replace('point','');
+                if(sumpoints <= 0){
                 
-
-            }); */
+                }else{
+                if(sumpoints > string_value){
+            
+                }
+            }
+        }
+        }); */
 
             
 
 
-            //abilita clicar nos botões
-            $('#point1').prop('disabled',false);
-            $('#point2').prop('disabled',false);
-            $('#point3').prop('disabled',false);
-            $('#point4').prop('disabled',false);
-            $('#point5').prop('disabled',false);
-            $('#point6').prop('disabled',false);
-            $('#point7').prop('disabled',false);
-            $('#point8').prop('disabled',false);
-            $('#point9').prop('disabled',false);
+        //abilita clicar nos botões
+        $('#point1').prop('disabled',false);
+        $('#point2').prop('disabled',false);
+        $('#point3').prop('disabled',false);
+        $('#point4').prop('disabled',false);
+        $('#point5').prop('disabled',false);
+        $('#point6').prop('disabled',false);
+        $('#point7').prop('disabled',false);
+        $('#point8').prop('disabled',false);
+        $('#point9').prop('disabled',false);
 
-            //remove a opção de rodar
-            $('#dicebutton').prop('disabled',true);
-            $('#gameover').prop('disabled',false);
+        //remove a opção de rodar
+        $('#dicebutton').prop('disabled',true);
+        $('#gameover').prop('disabled',false);
 
       
            
@@ -278,116 +248,84 @@ Layout::includeLayout('header'); ?>
             var error=0;
             if($('#numberfinish'+number).val()){
                 alert('Este número já foi adicionado anteriormente');
-
-            }
-            else {
-
+            } else {
                 if($('#numberselected'+number).val()){
-
                     sumpoints+=number;
                     $('#point'+number).css({"background-color":"white"});
-
                 }else{
                     if(sumpoints >= number){
-                
-                        //subtrair 
-                        sumpoints = sumpoints-number;
-                        alert(sumpoints);
+                    //subtrair
+                    sumpoints = sumpoints-number;
+                    alert(sumpoints);
                         
                         
+                    //adicionar os campos com os pontos escondidos
+                    var html="<input type='hidden' value='"+number+"' class='pontos_selecionados' name='numberselected["+count+"]' id='numberselected"+number+"'readonly>";
+                    $('#point'+number).css({"background-color":"orange"});
+                    $('#appendselected').append(html);
+                    $('#sumpoints').val(sumpoints);
+                    
+                    //soma de pontos -FUNCIONA
+                    $('#appendselected').each(function(){
+                        var newplayerpoints = 0;
+                        $(this).find('input').each(function(){
+                        newplayerpoints +=parseInt($(this).val());
+                        $('#playerpoints').val(newplayerpoints);
+                        });
+                    });
 
+                    //quanto menor melhor serve para saber quem fez menos pontos
+                    var winGame=45;
+                    var sub = 0;
+                    sub=winGame - $('#playerpoints').val();                    
+                    $('#winGame').val(sub);
 
-                        //adicionar os campos com os pontos escondidos
-                        var html="<input type='hidden' value='"+number+"' class='pontos_selecionados' name='numberselected["+count+"]' id='numberselected"+number+"'readonly>";
-                        $('#point'+number).css({"background-color":"orange"});
-
-                        $('#appendselected').append(html);
-                        $('#sumpoints').val(sumpoints);
-
-
-                        //soma de pontos -FUNCIONA
-                        $('#appendselected').each(function(){
-                            var newplayerpoints = 0;
-                            $(this).find('input').each(function(){
-                            newplayerpoints +=parseInt($(this).val());
-                            $('#playerpoints').val(newplayerpoints);
-                            });
+                    if(sumpoints==0){
+                        $('.pontos_selecionados').each(function(){
+                            var valor=$(this).val();
+                            $(this).removeClass('pontos_selecionados');
+                            $(this).attr('id','numberfinish'+valor);
+                            $('#point'+valor).css({"background-color":"green"});
                         });
 
-                    
-                
-                        
-                        //quanto menor melhor serve para saber quem fez menos pontos
-                        var winGame=45;
-                        var sub = 0;
-                        sub=winGame - $('#playerpoints').val();                    
-                        $('#winGame').val(sub);
+                        $('#point1').prop('disabled',true);
+                        $('#point2').prop('disabled',true);
+                        $('#point3').prop('disabled',true);
+                        $('#point4').prop('disabled',true);
+                        $('#point5').prop('disabled',true);
+                        $('#point6').prop('disabled',true);
+                        $('#point7').prop('disabled',true);
+                        $('#point8').prop('disabled',true);
+                        $('#point9').prop('disabled',true);
+                        //remove a opção de rodar
+                        $('#dicebutton').prop('disabled',false);
+                        $('#gameover').prop('disabled',false);
 
-                    
-                
-                        
-                    
-
-                        if(sumpoints==0){
-                            $('.pontos_selecionados').each(function(){
-                                var valor=$(this).val();
-                                $(this).removeClass('pontos_selecionados');
-                                $(this).attr('id','numberfinish'+valor);
-                                $('#point'+valor).css({"background-color":"green"});
-                            });
-
-                            $('#point1').prop('disabled',true);
-                            $('#point2').prop('disabled',true);
-                            $('#point3').prop('disabled',true);
-                            $('#point4').prop('disabled',true);
-                            $('#point5').prop('disabled',true);
-                            $('#point6').prop('disabled',true);
-                            $('#point7').prop('disabled',true);
-                            $('#point8').prop('disabled',true);
-                            $('#point9').prop('disabled',true);
-
-                            
-                            //remove a opção de rodar
-                            $('#dicebutton').prop('disabled',false);
-                            $('#gameover').prop('disabled',false);
-
-                            
-                        
-                            //manda as variaveis para o controlador
-                            var formdata = $('#dice_roll_form').serialize();
-                                $.ajax({
-                                type: 'POST',
-                                url: '<?=  URL::toRoute('game/randomdice') ?>', 
-                                cache: false,    
-                                data: formdata ,
-                                success: function(data){  
-
-                                    alert(data);
-
-                                
-                                    }
-                                });  
-                                return false;
+                        //manda as variaveis para o controlador
+                        var formdata = $('#dice_roll_form').serialize();
+                            $.ajax({
+                            type: 'POST',
+                            url: '<?=  URL::toRoute('game/randomdice') ?>', 
+                            cache: false,    
+                            data: formdata ,
+                            success: function(data){  
+                                alert(data);
                             }
-                        
+                            });  
+                            return false;
+                        }
                         else if(sumpoints<0){
                             alert('ERRO NÚMERO MAIOR');
                         }
-
                     }
                     else{
                         alert('Não é possível selecionar, número superior à soma de dados');
                     } 
                 }
-            }             
-
-            
-        }
-        else{
+            }                 
+        } else {
             alert('Valor inválido');
         }
-
-
     }
 
     $( "#gameover" ).click(function(e) {
@@ -414,7 +352,7 @@ Layout::includeLayout('header'); ?>
             $('#pontosfinais').val(total);
 
         });
-*/
+        */
 
         //quanto menor melhor serve para saber quem fez menos pontos
         var winGame=45;
