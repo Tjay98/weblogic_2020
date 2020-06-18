@@ -41,6 +41,8 @@ Router::get('game/dice2', 'GameController/dice2');
 Router::post('game/rolldice', 'GameController/rolldice');
 Router::get('game/sumdice', 'GameController/SumDice');
 
+Router::post('game/gameoverval','GameController/gameOver');
+
 
 Router::get('game/SumDice', 'GameController/SumDice');
 Router::get('game/story','GameController/story');

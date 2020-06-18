@@ -102,7 +102,7 @@ img.pull-left { margin-right: 10px; }
 .score-none > .price2 { background: none; color: rgba(0, 0, 0, 0.7); }
 .price { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
 .price1 { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
-.price2 { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #fff; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
+.price2 { text-align: center; height: 35px; width: 35px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 35px; color: #000; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
 .price3 {text-align: center; height: 50px; width: 50px; text-align: center; background-color: none; line-height: 50px; color: #fff; border-radius: 5px; font-size: 1.5em; font-weight: 100; margin: 5px 5px 5px 5px; }
 .round-score { height: 40px; width: 40px; text-align: center; background-color: #e74c3c; border-radius: 50%; line-height: 40px; color: #fff; font-size: 1.0em; font-weight: 100; margin: 10px 10px 10px 10px; }
 .dicecell { height: 70px; width: 70px; border-radius: 5px; margin-left: 10px; }

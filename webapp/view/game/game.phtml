@@ -45,7 +45,7 @@ Layout::includeLayout('header'); ?>
                             <button class="price" id="point9" onclick="checkifpossible(9)" disabled>9</button>
                             
                         </div>
-                        <button class="btn btn-success center-block"  onclick="" disabled>GAME OVER</button>
+                        <button class="btn btn-success center-block" id="gameover" disabled>GAME OVER</button>
 
                     </div>
                     <div class="col-xs-8">
@@ -58,7 +58,7 @@ Layout::includeLayout('header'); ?>
                                     </div>
                                 </div>
                                 <div class="round-cell ">
-                                    <div class="price2 " id="p1r"></div>
+                                    <input class="price2 " id="pontosfinais" value="" readonly>
                                 </div>
                             </div>
                             <div class="col-xs-6">
@@ -245,7 +245,8 @@ Layout::includeLayout('header'); ?>
 
             //remove a opção de rodar
             $('#dicebutton').prop('disabled',true);
-            
+            $('#gameover').prop('disabled',false);
+
       
            
     });
@@ -331,6 +332,7 @@ Layout::includeLayout('header'); ?>
                             
                             //remove a opção de rodar
                             $('#dicebutton').prop('disabled',false);
+                            $('#gameover').prop('disabled',false);
 
                             
                         
@@ -371,7 +373,50 @@ Layout::includeLayout('header'); ?>
 
     }
 
-    
+    $( "#gameover" ).click(function(e) {
+		e.preventDefault();
+
+        $('#point1').prop('disabled',true);
+        $('#point2').prop('disabled',true);
+        $('#point3').prop('disabled',true);
+        $('#point4').prop('disabled',true);
+        $('#point5').prop('disabled',true);
+        $('#point6').prop('disabled',true);
+        $('#point7').prop('disabled',true);
+        $('#point8').prop('disabled',true);
+        $('#point9').prop('disabled',true);
+
+                            
+        //remove a opção de rodar
+        $('#dicebutton').prop('disabled',true);
+
+        
+        $('#numberfinish').each(function(){
+            var total=0;
+            total+=parseInt($('#numberfinish').val());
+            $('#pontosfinais').val(total);
+
+        });
+
+
+        //quanto menor melhor serve para saber quem fez menos pontos
+        var winGame=45;
+        var sub = 0;
+        sub=winGame - $('#playerpoints').val();                    
+        $('#winGame').val(sub);
+
+
+        var formdata = $('#winGame').val();
+        $.ajax({
+        type: 'POST',
+        url: '<?=  URL::toRoute('game/gameoverval') ?>', 
+        cache: false,    
+        data: formdata ,
+        success: function(data){  
+            alert(data);
+        }
+        });  
+    });
 
         
 
