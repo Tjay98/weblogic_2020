@@ -11,7 +11,8 @@ class GameController extends BaseController
     public function game(){
         if(!empty($_SESSION['username'])){
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                gameIndex();
+                
+
                 return View::make('game.game');
                 
             }

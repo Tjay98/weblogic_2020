@@ -2,11 +2,17 @@
 use ArmoredCore\WebObjects\Asset;
 use ArmoredCore\WebObjects\Layout;
 use ArmoredCore\WebObjects\URL;
+use ArmoredCore\WebObjects\Data;
+use ArmoredCore\WebObjects\ErrMgr;
+
 
 
 
 
 Layout::includeLayout('header'); ?>
+<?php $game = Data::get('games')?>
+<?php ErrMgr::attach($game) ?>
+
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
@@ -58,7 +64,7 @@ Layout::includeLayout('header'); ?>
                                     </div>
                                 </div>
                                 <div class="round-cell ">
-                                    <input class="price2 " id="pontosfinais" value="" readonly>
+                                <input type="text" style="width:40px;text-align:center" name="pontosfinais" id="winGame" value="<?=$game->player_points?>" readonly>
                                 </div>
                             </div>
                             <div class="col-xs-6">
@@ -69,7 +75,7 @@ Layout::includeLayout('header'); ?>
                                     </div>
                                 </div>
                                 <div class="round-cell">
-                                    <div class="price2" id="p2r"></div>
+                                <input type="text" style="width:40px;text-align:center" name="pontosfinaisbot" id="pontosfinaisbot" value="<?=$game->enemy_points?>" readonly>
                                 </div>
                             </div>
                         </div>
@@ -81,12 +87,23 @@ Layout::includeLayout('header'); ?>
                                     <input type="hidden" name="dice2" id="dice2" value="<?php if(!empty($dice2)){echo $dice2;}?>" readonly>
                                     <label for="sumpoints" style="color:white">Pontos ainda possíveis para jogar</label>
                                     <input type="text" style="width:40px;text-align:center" name="sumpoints" id="sumpoints" value="0" readonly>
-                                    <input type="hidden" name="winGame" id="winGame" value="" readonly>
+                                    <!--<input type="hidden" name="winGame" id="winGame" value="" readonly>-->
+
+                                    <input type="hidden" name="status" id="status" value="<?php $game->status==1?>" readonly>
 
                                     <input type="hidden" name="playerpoints" id="playerpoints" value="" readonly>
+
+                                    <input type="hidden" name="id_user" id="id_user" value="<?php $game->id_user ==['username']?>" readonly>
+
+                                    <input type="hidden" name="started_date" id="started_date" value="<?php $game->started_date == date('Y-m-d ')?>" readonly>
+
                                     <div id="appendselected"></div>
                                     
-
+                                
+                                    <?= ErrMgr::bind('id_user') ?>
+                                    <?= ErrMgr::bind('started_date') ?>
+                                    <?= ErrMgr::bind('winGame') ?>
+                                    <?= ErrMgr::bind('status') ?>
                                 </form>                                
                             </div>
                             
@@ -391,13 +408,13 @@ Layout::includeLayout('header'); ?>
         $('#dicebutton').prop('disabled',true);
 
         
-        $('#numberfinish').each(function(){
+       /* $('#numberfinish').each(function(){
             var total=0;
             total+=parseInt($('#numberfinish').val());
             $('#pontosfinais').val(total);
 
         });
-
+*/
 
         //quanto menor melhor serve para saber quem fez menos pontos
         var winGame=45;

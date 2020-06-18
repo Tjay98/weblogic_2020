@@ -31,6 +31,7 @@ Router::post('home/changepasswordvalidation', 'HomeController/changepassword');
 
 Router::get('game/scoreboard','GameController/scoreboard');
 
+Router::resource('game', 'GameController');
 
 Router::get('game/game','GameController/game');
 Router::post('game/game','GameController/game');
