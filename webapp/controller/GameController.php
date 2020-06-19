@@ -168,7 +168,38 @@ class GameController extends BaseController
                         
                     $checkgame->save();
 
+                    $checkgame2=Games::find_by_id($_SESSION['game']);
+                    $checkgame2->player_points=0;
 
+                    if($checkgame2->point_1==1){
+                        $checkgame2->player_points+=1;
+                    }
+                    if($checkgame2->point_2==1){
+                        $checkgame2->player_points+=2;
+                    }
+                    if($checkgame2->point_3==1){
+                        $checkgame2->player_points+=3;
+                    }
+                    if($checkgame2->point_4==1){
+                        $checkgame2->player_points+=4;
+                    }
+                    if($checkgame2->point_5==1){
+                        $checkgame2->player_points+=5;
+                    }
+                    if($checkgame2->point_6==1){
+                        $checkgame2->player_points+=6;
+                    }
+                    if($checkgame2->point_7==1){
+                        $checkgame2->player_points+=7;
+                    }
+                    if($checkgame2->point_8==1){
+                        $checkgame2->player_points+=8;
+                    }
+                    if($checkgame2->point_9==1){
+                        $checkgame2->player_points+=9;
+                    }
+                    $_SESSION['game_points']=$checkgame2->player_points;
+                    $checkgame2->save();
                     
                 }
 
@@ -190,14 +221,14 @@ class GameController extends BaseController
 
             $find_user=Users::find_by_username($_SESSION['username']);
             $scoreboard=Scoreboards::find_by_user_id($find_user->id);
-/*             if(empty($scoreboard)){
+            if(empty($scoreboard)){
                 $scoreboardData=[
                     'user_id'=>$find_user->id,
                 ];
                 scoreboards::create($scoreboardData);
                 $scoreboard=Scoreboards::find_by_user_id($find_user->id);
             }
-             */
+            
 
 
             $oldpoints=$scoreboard->total_points;
@@ -207,6 +238,7 @@ class GameController extends BaseController
 
             $scoreboard->save();
             unset($_SESSION["game"]);
+            unset($_SESSION['game_points']);
             unset($_SESSION["point_1"]);
             unset($_SESSION["point_2"]);
             unset($_SESSION["point_3"]);
