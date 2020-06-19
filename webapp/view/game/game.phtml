@@ -332,10 +332,10 @@ $(document).ready(function(){
                     });
 
                     //quanto menor melhor serve para saber quem fez menos pontos
-                    var winGame=45;
+/*                     var winGame=45;
                     var sub = 0;
                     sub=winGame - $('#playerpoints').val();                    
-                    $('#winGame').val(sub);
+                    $('#winGame').val(sub); */
 
                     if(sumpoints==0){
                         $('.pontos_selecionados').each(function(){
@@ -367,7 +367,7 @@ $(document).ready(function(){
                             cache: false,    
                             data: formdata ,
                             success: function(data){  
-                                alert(data);
+                                //alert(data);
                             }
                             });  
                             return false;
